@@ -1,7 +1,7 @@
 function App() {
   return (
     <div>
-      <p>Initialize Project</p>
+      <p>Create develop branch</p>
     </div>
   );
 }
