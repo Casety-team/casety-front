@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
   Link,
@@ -11,11 +11,10 @@ import Home from './Home';
 import Signin from './users/Signin';
 import Signup from './users/Signup';
 
-
-export default class Routers extends React.Component {
+export default class Router extends React.Component {
   render(){
     return (
-    <Router>
+    <BrowserRouter>
       <div>
         <ul>
           <li>
@@ -30,7 +29,7 @@ export default class Routers extends React.Component {
         </ul>
 
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/signin">
@@ -41,7 +40,7 @@ export default class Routers extends React.Component {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
   }
 }
