@@ -8,7 +8,8 @@ export default class Signup extends React.Component {
       lastname: '',
       email: '',
       password: '',
-      roles: ["user"]
+      roles: ["user"],
+      success: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,16 +22,45 @@ export default class Signup extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { firstname, lastname, email, password, roles } = this.state;
-    axios.post('https://api.casety.fr/api/auth/signup', { firstname, lastname, email, password, roles })
-      .then((result) => {
-        console.log(result);
-      })
+
+    if(firstname){
+      if(lastname){
+        if(email){
+          if(password){
+            if(roles){
+              axios.post('http://localhost:4545/api/auth/signup', { firstname, lastname, email, password, roles })
+              .then((result) => {
+                if(result.status === 200) {
+                  this.setState({success: result.data.message, error: '' })
+                }
+              })
+              .catch((result) => {
+                this.setState({error: result.response.data.message, success: '' })
+              });
+            } else {
+              this.setState({error: 'Failed! Roles is already in use!', success: '' });
+            }
+          } else {
+            this.setState({error: 'Failed! Password is already in use!', success: '' });
+          }
+        }else {
+          this.setState({error: 'Failed! Email is already in use!', success: '' });
+        } 
+      }else {
+        this.setState({error: 'Failed! Lastname is already in use!', success: '' });
+      }
+    }else {
+      this.setState({error: 'Failed! Firstname is already in use!', success: '' });
+    }
   }
 
   render(){
+    const { success, error } = this.state
     return (
       <>
         <h1>Signup</h1>
+        {success}
+        {error}
         <form onSubmit={this.handleSubmit}>
           <label>
             Firstname:
