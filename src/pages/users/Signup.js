@@ -28,14 +28,12 @@ export default class Signup extends React.Component {
         if(email){
           if(password){
             if(roles){
-              axios.post('http://localhost:4545/api/auth/signup', { firstname, lastname, email, password, roles })
+              axios.post((process.env.link__api || 'http://localhost:4545') + '/api/auth/signup', { firstname, lastname, email, password, roles })
               .then((result) => {
-                if(result.status === 200) {
                   this.setState({success: result.data.message, error: '' })
-                }
               })
               .catch((result) => {
-                this.setState({error: result.response.data.message, success: '' })
+                this.setState({error: result.response, success: '' })
               });
             } else {
               this.setState({error: 'Failed! Roles is already in use!', success: '' });
