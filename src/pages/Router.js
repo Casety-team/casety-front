@@ -8,8 +8,11 @@ import {
 
 //Pages 
 import Home from './Home';
+
+//User
 import Signin from './users/Signin';
 import Signup from './users/Signup';
+import Profile from './users/Profile';
 
 export default class Router extends React.Component {
   render(){
@@ -37,6 +40,9 @@ export default class Router extends React.Component {
           </Route>
           <Route path="/signup">
             <Signup />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </div>
