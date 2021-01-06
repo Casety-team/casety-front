@@ -1,72 +1,125 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useRef } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 
-export default class Signin extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      success: '',
-      error: '',
-      redirect: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import AuthService from "../../services/auth.service";
 
-  handleChange(event) {    
-    this.setState({ [event.target.name]: event.target.value }); 
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const { email, password } = this.state;
-
-    if(email){
-      if(password){
-          axios.post((process.env.link__api || 'http://localhost:4545') + '/api/auth/signin', { email, password })
-          .then((success) => {
-            this.setState({ redirect: true })
-          })
-          .catch ((error) => {
-            console.log(error)
-          })
-        } else {
-          this.setState({
-            error: 'Failed! Password is already in use!', 
-            success: ''
-          });
-        }
-      } else {
-        this.setState({
-          error: 'Failed! Email is already in use!', 
-          success: '' 
-        });
-      }
-  }
-  render(){
-    const { redirect } = this.state;
-
-    if(redirect){
-      return <Redirect to='/profile'/>;
-    }
+const required = (value) => {
+  if (!value) {
     return (
-      <>
-        <h1>Signin</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            email:
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-          </label>
-          <label>
-            password:
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Envoyer"/>
-        </form>
-      </>
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
     );
   }
-}
+};
+
+const Signin = (props) => {
+  const form = useRef();
+  const checkBtn = useRef();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      AuthService.login(username, password).then(
+        () => {
+          props.history.push("/profile");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+        }
+      );
+    } else {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="col-md-12">
+      <div className="card card-container">
+        <img
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          alt="profile-img"
+          className="profile-img-card"
+        />
+
+        <Form onSubmit={handleLogin} ref={form}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <Input
+              type="text"
+              className="form-control"
+              name="username"
+              value={username}
+              onChange={onChangeUsername}
+              validations={[required]}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <Input
+              type="password"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+            />
+          </div>
+
+          <div className="form-group">
+            <button className="btn btn-primary btn-block" disabled={loading}>
+              {loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
+              <span>Login</span>
+            </button>
+          </div>
+
+          {message && (
+            <div className="form-group">
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
+      </div>
+    </div>
+  );
+};
+
+export default Signin;
