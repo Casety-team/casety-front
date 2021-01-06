@@ -24,8 +24,8 @@ const BoardUser = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
+    <div>
+      <header>
         <h3>{content}</h3>
       </header>
     </div>

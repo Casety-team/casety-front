@@ -6,10 +6,10 @@ import AuthService from "../services/auth.service";
 import Login from "./users/Signin";
 import Register from "./users/Signup";
 import Home from "./Home";
-import Profile from "./user/Profile";
+import Profile from "./users/Profile";
 import BoardUser from "../components/user/BoardUser";
-import BoardModerator from "./components/moderator/BoardModerator";
-import BoardAdmin from "./components/admin/BoardAdmin";
+import BoardModerator from "../components/moderator/BoardModerator";
+import BoardAdmin from "../components/admin/BoardAdmin";
 
 const Router = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -32,36 +32,36 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
+      <nav>
+        <Link to={"/"}>
           bezKoder
         </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
+        <div>
+          <li>
+            <Link to={"/home"}>
               Home
             </Link>
           </li>
 
           {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
+            <li>
+              <Link to={"/mod"}>
                 Moderator Board
               </Link>
             </li>
           )}
 
           {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
+            <li>
+              <Link to={"/admin"}>
                 Admin Board
               </Link>
             </li>
           )}
 
           {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
+            <li>
+              <Link to={"/user"}>
                 User
               </Link>
             </li>
@@ -69,28 +69,28 @@ const Router = () => {
         </div>
 
         {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
+          <div>
+            <li>
+              <Link to={"/profile"}>
                 {currentUser.username}
               </Link>
             </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
+            <li>
+              <a href="/login" onClick={logOut}>
                 LogOut
               </a>
             </li>
           </div>
         ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
+          <div>
+            <li>
+              <Link to={"/login"}>
                 Login
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
+            <li>
+              <Link to={"/register"}>
                 Sign Up
               </Link>
             </li>
@@ -98,7 +98,7 @@ const Router = () => {
         )}
       </nav>
 
-      <div className="container mt-3">
+      <div>
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/login" component={Login} />
