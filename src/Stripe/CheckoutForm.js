@@ -2,11 +2,14 @@ import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
+import AuthService from "../services/auth.service";
+
 export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event) => {
+    const currentUser = AuthService.getCurrentUser();
     event.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -24,14 +27,19 @@ export const CheckoutForm = () => {
           }
         );
         if (response.data.success) {
-          alert(response.data.message)
+          const result = await axios.post(
+            "http://localhost:4545/stripe/charge/buy/user",
+            {
+              user_id: currentUser.id,
+              buy: true
+            }
+          );
+          if (result.data.success) { 
+              alert('ok')
+          }
         }
-      } catch (error) {
-        console.log("CheckoutForm.js 28 | ", error);
-      }
-    } else {
-      console.log(error.message);
-    }
+      } catch (error){}
+    } else {}
   };
 
   return (
