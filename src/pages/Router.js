@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
@@ -7,13 +7,14 @@ import Login from "./users/Signin";
 import Register from "./users/Signup";
 import Home from "./Home";
 import Profile from "./users/Profile";
-import BoardUser from "../components/user/BoardUser";
-import BoardModerator from "../components/moderator/BoardModerator";
-import BoardAdmin from "../components/admin/BoardAdmin";
+import BoardUser from "./users/BoardUser";
+import BoardModerator from "./moderator/BoardModerator";
+import BoardAdmin from "./admin/BoardAdmin";
 
 const Router = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [showUserBoard, setShowUserBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const Router = () => {
 
     if (user) {
       setCurrentUser(user);
+      setShowUserBoard(user.roles.includes("ROLE_USER"));
       setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
@@ -34,7 +36,7 @@ const Router = () => {
     <BrowserRouter>
       <nav>
         <Link to={"/"}>
-          bezKoder
+          Casety
         </Link>
         <div>
           <li>
@@ -42,7 +44,6 @@ const Router = () => {
               Home
             </Link>
           </li>
-
           {showModeratorBoard && (
             <li>
               <Link to={"/mod"}>
@@ -59,7 +60,7 @@ const Router = () => {
             </li>
           )}
 
-          {currentUser && (
+          {showUserBoard && (
             <li>
               <Link to={"/user"}>
                 User
@@ -88,7 +89,6 @@ const Router = () => {
                 Login
               </Link>
             </li>
-
             <li>
               <Link to={"/register"}>
                 Sign Up
@@ -97,18 +97,15 @@ const Router = () => {
           </div>
         )}
       </nav>
-
-      <div>
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-          <Route path="/user" component={BoardUser} />
-          <Route path="/mod" component={BoardModerator} />
-          <Route path="/admin" component={BoardAdmin} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/user">{!showUserBoard ? <Redirect to="/" /> : <BoardUser />}</Route>
+        <Route path="/mod">{!showModeratorBoard ? <Redirect to="/" /> : <BoardModerator />}</Route>
+        <Route path="/admin">{!showAdminBoard ? <Redirect to="/" /> : <BoardAdmin />}</Route>
+      </Switch>
     </BrowserRouter>
   );
 };
