@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect, useParams } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
 import Login from "./users/Signin";
 import Register from "./users/Signup";
+
 import Home from "./Home";
+import Shop from "./Shop";
+import StripeContainer from "../Stripe/StripeContainer";
+
 import Profile from "./users/Profile";
 import BoardUser from "./users/BoardUser";
 import BoardModerator from "./moderator/BoardModerator";
@@ -44,13 +48,11 @@ const Router = () => {
               Home
             </Link>
           </li>
-          {showModeratorBoard && (
-            <li>
-              <Link to={"/mod"}>
-                Moderator Board
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link to ={"/shop"}>
+              Shop
+            </Link>
+          </li>
 
           {showAdminBoard && (
             <li>
@@ -59,7 +61,13 @@ const Router = () => {
               </Link>
             </li>
           )}
-
+          {showModeratorBoard && (
+            <li>
+              <Link to={"/mod"}>
+                Moderator Board
+              </Link>
+            </li>
+          )}
           {showUserBoard && (
             <li>
               <Link to={"/user"}>
@@ -99,9 +107,11 @@ const Router = () => {
       </nav>
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path="/shop" component={Shop} />
+        <Route exact path="/buy/:productId" component={StripeContainer} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" component={Profile} />   
         <Route path="/user">{!showUserBoard ? <Redirect to="/" /> : <BoardUser />}</Route>
         <Route path="/mod">{!showModeratorBoard ? <Redirect to="/" /> : <BoardModerator />}</Route>
         <Route path="/admin">{!showAdminBoard ? <Redirect to="/" /> : <BoardAdmin />}</Route>
