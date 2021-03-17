@@ -7,11 +7,7 @@ import AuthService from "../../services/auth.service";
 
 const required = (value) => {
   if (!value) {
-    return (
-      <div role="alert">
-        This field is required!
-      </div>
-    );
+    return <div role="alert">This field is required!</div>;
   }
 };
 
@@ -45,7 +41,7 @@ const Signin = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
-          props.history.push("/profile");
+          props.history.push("/profile/");
           window.location.reload();
         },
         (error) => {
@@ -91,18 +87,14 @@ const Signin = (props) => {
 
       <div>
         <button disabled={loading}>
-          {loading && (
-            <span>Spiner</span>
-          )}
+          {loading && <span>Spiner</span>}
           <span>Login</span>
         </button>
       </div>
 
       {message && (
         <div>
-          <div role="alert">
-            {message}
-          </div>
+          <div role="alert">{message}</div>
         </div>
       )}
       <CheckButton style={{ display: "none" }} ref={checkBtn} />
