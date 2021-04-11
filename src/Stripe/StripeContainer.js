@@ -53,8 +53,9 @@ export default function Stripe() {
   }, []);
 
   const handleClick = async (event) => {
+    const API_URL = proces.env.REACT_APP_API_URL || "http://localhost:4545/";
     const stripe = await stripePromise;
-    const response = await axios.post("http://localhost:4545/stripe/charge", {
+    const response = await axios.post(API_URL + "/stripe/charge", {
       nameProduct: nameProduct,
       unitAmount: unitAmount,
       quantity: quantity,
