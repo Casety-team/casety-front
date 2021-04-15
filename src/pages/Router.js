@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, Link, Redirect, useParams } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useParams,
+} from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
@@ -39,40 +46,28 @@ const Router = () => {
   return (
     <BrowserRouter>
       <nav>
-        <Link to={"/"}>
-          Casety
-        </Link>
+        <Link to={"/"}>Casety</Link>
         <div>
           <li>
-            <Link to={"/home"}>
-              Home
-            </Link>
+            <Link to={"/home"}>Home</Link>
           </li>
           <li>
-            <Link to ={"/shop"}>
-              Shop
-            </Link>
+            <Link to={"/shop"}>Shop</Link>
           </li>
 
           {showAdminBoard && (
             <li>
-              <Link to={"/admin"}>
-                Admin Board
-              </Link>
+              <Link to={"/admin"}>Admin Board</Link>
             </li>
           )}
           {showModeratorBoard && (
             <li>
-              <Link to={"/mod"}>
-                Moderator Board
-              </Link>
+              <Link to={"/mod"}>Moderator Board</Link>
             </li>
           )}
           {showUserBoard && (
             <li>
-              <Link to={"/user"}>
-                User
-              </Link>
+              <Link to={"/user"}>User</Link>
             </li>
           )}
         </div>
@@ -80,9 +75,7 @@ const Router = () => {
         {currentUser ? (
           <div>
             <li>
-              <Link to={"/profile"}>
-                {currentUser.username}
-              </Link>
+              <Link to={"/profile"}>{currentUser.username}</Link>
             </li>
             <li>
               <a href="/login" onClick={logOut}>
@@ -93,14 +86,10 @@ const Router = () => {
         ) : (
           <div>
             <li>
-              <Link to={"/login"}>
-                Login
-              </Link>
+              <Link to={"/login"}>Login</Link>
             </li>
             <li>
-              <Link to={"/register"}>
-                Sign Up
-              </Link>
+              <Link to={"/register"}>Sign Up</Link>
             </li>
           </div>
         )}
@@ -111,10 +100,16 @@ const Router = () => {
         <Route exact path="/buy/:productId" component={StripeContainer} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route path="/profile" component={Profile} />   
-        <Route path="/user">{!showUserBoard ? <Redirect to="/" /> : <BoardUser />}</Route>
-        <Route path="/mod">{!showModeratorBoard ? <Redirect to="/" /> : <BoardModerator />}</Route>
-        <Route path="/admin">{!showAdminBoard ? <Redirect to="/" /> : <BoardAdmin />}</Route>
+        <Route path="/profile" component={Profile} />
+        <Route path="/user">
+          {!showUserBoard ? <Redirect to="/" /> : <BoardUser />}
+        </Route>
+        <Route path="/mod">
+          {!showModeratorBoard ? <Redirect to="/" /> : <BoardModerator />}
+        </Route>
+        <Route path="/admin">
+          {!showAdminBoard ? <Redirect to="/" /> : <BoardAdmin />}
+        </Route>
       </Switch>
     </BrowserRouter>
   );
