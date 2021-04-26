@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import "./app.css";
+// import "./app.css";
 import axios from "axios";
 
 const stripePromise = loadStripe(
