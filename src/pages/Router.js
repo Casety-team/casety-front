@@ -18,11 +18,16 @@ import Blog from "./blog/";
 import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
 import StripeContainer from "../Stripe/StripeContainer";
+import StripeSuccess from "../Stripe/StripeSuccess";
 
 import Profile from "./users/Profile";
 import BoardUser from "./users/BoardUser";
 import BoardModerator from "./moderator/BoardModerator";
+
 import BoardAdmin from "./admin/BoardAdmin";
+import Location from "./admin/Location";
+import Locker from "./admin/Locker";
+import Blogs from "./admin/Blog";
 
 const Router = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -128,18 +133,43 @@ const Router = () => {
         <Route exact path="/blog/article/:id" component={Article} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/buy/:productId" component={StripeContainer} />
+        <Route
+          exact
+          path="/stripe/charge/success/:token"
+          component={StripeSuccess}
+        />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/user">
-          {!showUserBoard ? <Redirect to="/" /> : <BoardUser />}
-        </Route>
-        <Route path="/mod">
-          {!showModeratorBoard ? <Redirect to="/" /> : <BoardModerator />}
-        </Route>
-        <Route path="/admin">
-          {!showAdminBoard ? <Redirect to="/" /> : <BoardAdmin />}
-        </Route>
+
+        <Route exact path="/admin" component={BoardAdmin} />
+        <Route exact path="/admin/location" component={Location} />
+        <Route exact path="/admin/locker" component={Locker} />
+        <Route exact path="/admin/blog" component={Blogs} />
+        {/*
+        {showUserBoard && (
+          <>
+            {console.log("showUserBoard")}
+            <Route exact path="/user" component={BoardUser} />
+            <Route exact path="/user/profile" component={Profile} />
+          </>
+        )}
+
+        {showModeratorBoard ? (
+          <>a
+            <Route exact path="/mod" component={BoardModerator} />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+
+        {showAdminBoard ? (
+          <>
+            <Route exact path="/admin" component={BoardAdmin} />
+            <Route exact path="/admin/location" component={Location} />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )} */}
       </Switch>
     </BrowserRouter>
   );

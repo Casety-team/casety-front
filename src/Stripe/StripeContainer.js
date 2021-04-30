@@ -29,13 +29,11 @@ const Message = ({ message }) => (
   </section>
 );
 
-export default function Stripe() {
+export default function Stripe(nameProduct, unitAmount, userId, reservationId) {
   const [message, setMessage] = useState("");
 
   //form
-  const [nameProduct, setNameProduct] = useState("Product 1");
-  const [unitAmount, setUnitAmount] = useState(300);
-  const [quantity, setQuantity] = useState(3);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -53,14 +51,14 @@ export default function Stripe() {
   }, []);
 
   const handleClick = async (event) => {
-    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4545/";
+    const API_URL = "https://api.casety.fr/";
     const stripe = await stripePromise;
-    const response = await axios.post(API_URL + "/stripe/charge", {
+    const response = await axios.post(API_URL + "stripe/charge", {
       nameProduct: nameProduct,
       unitAmount: unitAmount,
       quantity: quantity,
-      reservationId: 1,
-      idUser: 1, //change get Location
+      reservationId: reservationId,
+      idUser: userId,
     });
     const session = await response;
     // When the customer clicks on the button, redirect them to Checkout.
