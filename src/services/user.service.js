@@ -19,9 +19,46 @@ const getAdminBoard = () => {
   return axios.get(API_URL + "admin", { headers: authHeader() });
 };
 
+const getUser = (id) => {
+  return axios.get(API_URL + "user/" + id, { headers: authHeader() });
+};
+
+const userUpdate = (
+  id,
+  firstname,
+  lastname,
+  email,
+  phone,
+  adress,
+  city,
+  zip
+) => {
+  return axios.put(
+    API_URL + "user/" + id,
+    {
+      id,
+      firstname,
+      lastname,
+      email,
+      phone,
+      adress,
+      city,
+      zip,
+    },
+    { headers: authHeader() }
+  );
+};
+
+const deleteUser = (id) => {
+  return axios.post(API_URL + "user/" + id, { headers: authHeader() });
+};
+
 export default {
   getPublicContent,
+  getUser,
+  userUpdate,
   getUserBoard,
+  deleteUser,
   getModeratorBoard,
   getAdminBoard,
 };

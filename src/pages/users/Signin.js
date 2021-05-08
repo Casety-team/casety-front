@@ -1,8 +1,4 @@
 import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-
 import AuthService from "../../services/auth.service";
 
 const required = (value) => {
@@ -12,93 +8,92 @@ const required = (value) => {
 };
 
 const Signin = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
   const handleLogin = (e) => {
     e.preventDefault();
-
     setMessage("");
     setLoading(true);
 
-    form.current.validateAll();
+    AuthService.login(email, password).then(
+      () => {
+        props.history.push("/user/profile/");
+        window.location.reload();
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(email, password).then(
-        () => {
-          props.history.push("/profile/");
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      );
-    } else {
-      setLoading(false);
-    }
+        setLoading(false);
+        setMessage(resMessage);
+      }
+    );
   };
 
   return (
-    <Form onSubmit={handleLogin} ref={form}>
-      <div>
-        <label htmlFor="Email">Email</label>
-        <Input
-          type="text"
-          name="Email"
-          value={email}
-          onChange={onChangeEmail}
-          validations={[required]}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="password">Password</label>
-        <Input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChangePassword}
-          validations={[required]}
-        />
-      </div>
-
-      <div>
-        <button disabled={loading}>
-          {loading && <span>Spiner</span>}
-          <span>Login</span>
-        </button>
-      </div>
-
-      {message && (
-        <div>
-          <div role="alert">{message}</div>
+    <>
+      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">
+              Vertically centered hero sign-up form
+            </h1>
+            <p class="col-lg-10 fs-4">
+              Below is an example form built entirely with Bootstrap’s form
+              controls. Each required form group has a validation state that can
+              be triggered by attempting to submit the form without completing
+              it.
+            </p>
+          </div>
+          <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-light">
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="floatingInput"
+                  type="email"
+                  name="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  validations={[required]}
+                />
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  class="form-control"
+                  id="floatingPassword"
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  validations={[required]}
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+              <button
+                class="w-100 btn btn-lg btn-primary"
+                onClick={(e) => handleLogin(e)}
+                type="submit"
+              >
+                Sign up
+              </button>
+              <hr class="my-4" />
+              <small class="text-muted">
+                By clicking Sign up, you agree to the terms of use.
+              </small>
+            </form>
+          </div>
         </div>
-      )}
-      <CheckButton style={{ display: "none" }} ref={checkBtn} />
-    </Form>
+      </div>
+    </>
   );
 };
 

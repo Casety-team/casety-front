@@ -52,81 +52,85 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
           <Link class="navbar-brand" to={"/"}>
             Casety
           </Link>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <Link class="nav-link active" to={"/home"}>
-                  Home
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/blog"}>
-                  Blog
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/shop"}>
-                  Shop
-                </Link>
-              </li>
-              {showAdminBoard && (
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul class="navbar-nav">
                 <li class="nav-item">
-                  <Link class="nav-link" to={"/admin"}>
-                    Admin Board
+                  <Link class="nav-link active" to={"/home"}>
+                    Accueil
                   </Link>
                 </li>
-              )}
-              {showModeratorBoard && (
                 <li class="nav-item">
-                  <Link class="nav-link" to={"/mod"}>
-                    Moderator Board
+                  <Link class="nav-link" to={"/shop"}>
+                    Boutique
                   </Link>
                 </li>
-              )}
-              {showUserBoard && (
                 <li class="nav-item">
-                  <Link class="nav-link" to={"/user"}>
-                    User
+                  <Link class="nav-link" to={"/blog"}>
+                    Blog
                   </Link>
                 </li>
-              )}
-              {currentUser ? (
-                <>
+              </ul>
+            </div>
+            <div class="d-flex">
+              <ul class="navbar-nav">
+                {showAdminBoard && (
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/profile"}>
-                      {currentUser.username}
+                    <Link class="nav-link" to={"/admin"}>
+                      Dashboard
                     </Link>
                   </li>
+                )}
+                {showUserBoard && (
                   <li class="nav-item">
-                    <a href="/login" class="nav-link" onClick={logOut}>
-                      LogOut
-                    </a>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/login"}>
-                      Login
+                    <Link class="nav-link" to={"/user/profile"}>
+                      Profil
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/register"}>
-                      Sign Up
-                    </Link>
-                  </li>
-                </>
-              )}
-            </ul>
+                )}
+                {currentUser ? (
+                  <>
+                    <li class="nav-item">
+                      <a href="/login" class="nav-link" onClick={logOut}>
+                        Déconnexion
+                      </a>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li class="nav-item">
+                      <Link class="nav-link" to={"/login"}>
+                        Connexion
+                      </Link>
+                    </li>
+                    <li class="nav-item">
+                      <Link class="nav-link" to={"/register"}>
+                        Inscription
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
-
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
         <Route exact path="/blog" component={Blog} />
@@ -138,6 +142,8 @@ const Router = () => {
           path="/stripe/charge/success/:token"
           component={StripeSuccess}
         />
+
+        <Route exact path="/user/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 
@@ -149,8 +155,7 @@ const Router = () => {
         {showUserBoard && (
           <>
             {console.log("showUserBoard")}
-            <Route exact path="/user" component={BoardUser} />
-            <Route exact path="/user/profile" component={Profile} />
+
           </>
         )}
 

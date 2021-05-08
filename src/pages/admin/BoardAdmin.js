@@ -69,7 +69,7 @@ const BoardAdmin = () => {
   }, []);
   return (
     <div className="mt-5 container">
-      <ul className="nav nav-tabs">
+      <ul className="nav nav-tabs" style={{ marginTop: 100 }}>
         <li className="nav-item">
           <a className="nav-link active" href="/admin/">
             DashBoard
