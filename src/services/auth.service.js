@@ -2,12 +2,25 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "https://api.casety.fr/api/";
 
-const register = (firstname, lastname, email, password) => {
+const register = (
+  firstname,
+  lastname,
+  email,
+  password,
+  phone,
+  city,
+  adress,
+  zip
+) => {
   return axios.post(API_URL + "auth/signup", {
     firstname,
     lastname,
     email,
     password,
+    phone,
+    city,
+    adress,
+    zip,
   });
 };
 

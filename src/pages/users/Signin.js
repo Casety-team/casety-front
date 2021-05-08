@@ -15,7 +15,6 @@ const Signin = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setMessage("");
     setLoading(true);
 
     AuthService.login(email, password).then(
@@ -54,36 +53,33 @@ const Signin = (props) => {
           </div>
           <div class="col-md-10 mx-auto col-lg-5">
             <form class="p-4 p-md-5 border rounded-3 bg-light">
-              <div class="form-floating mb-3">
+              <div class="mb-3">
                 <input
                   class="form-control"
                   id="floatingInput"
                   type="email"
-                  name="Email"
+                  placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   validations={[required]}
                 />
-                <label for="floatingInput">Email address</label>
               </div>
-              <div class="form-floating mb-3">
+              <div class="mb-3">
                 <input
                   class="form-control"
-                  id="floatingPassword"
                   type="password"
-                  name="password"
+                  placeholder="Mot de passe"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   validations={[required]}
                 />
-                <label for="floatingPassword">Password</label>
               </div>
               <button
                 class="w-100 btn btn-lg btn-primary"
                 onClick={(e) => handleLogin(e)}
                 type="submit"
               >
-                Sign up
+                Connexion
               </button>
               <hr class="my-4" />
               <small class="text-muted">

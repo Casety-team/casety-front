@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 import ShopService from "../services/shop.service";
 import moment from "moment";
-import { Redirect } from "react-router-dom";
 
 const Shop = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -23,7 +22,6 @@ const Shop = () => {
     ShopService.getAllLocations().then(
       (response) => {
         setLocation(response.data);
-        console.log();
       },
       (error) => {
         const _content =
@@ -40,7 +38,6 @@ const Shop = () => {
     ShopService.getAllLockerTypes().then(
       (response) => {
         setLockerType(response.data);
-        console.log();
       },
       (error) => {
         const _content =
@@ -57,7 +54,6 @@ const Shop = () => {
     ShopService.getAllLockers().then(
       (response) => {
         setLocker(response.data);
-        console.log();
       },
       (error) => {
         const _content =
@@ -99,7 +95,11 @@ const Shop = () => {
       {!currentUser ? (
         <a href="/login">Go login</a>
       ) : (
-        <form onSubmit={createReserver}>
+        <form
+          className="mt-5 container"
+          onSubmit={createReserver}
+          style={{ paddingTop: 30 }}
+        >
           <label htmlFor="lieu">Choisissez un lieu </label>
           <select
             name="lieu"

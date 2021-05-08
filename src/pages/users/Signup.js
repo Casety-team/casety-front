@@ -8,30 +8,20 @@ import AuthService from "../../services/auth.service";
 
 const required = (value) => {
   if (!value) {
-    return (
-      <div role="alert">
-        This field is required!
-      </div>
-    );
+    return <div role="alert">This field is required!</div>;
   }
 };
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
-    return (
-      <div role="alert">
-        This is not a valid email.
-      </div>
-    );
+    return <div role="alert">This is not a valid email.</div>;
   }
 };
 
 const vFirstname = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
-      <div role="alert">
-        The Firstname must be between 3 and 20 characters.
-      </div>
+      <div role="alert">The Firstname must be between 3 and 20 characters.</div>
     );
   }
 };
@@ -39,9 +29,7 @@ const vFirstname = (value) => {
 const vLastname = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
-      <div role="alert">
-        The Lastname must be between 3 and 20 characters.
-      </div>
+      <div role="alert">The Lastname must be between 3 and 20 characters.</div>
     );
   }
 };
@@ -49,9 +37,7 @@ const vLastname = (value) => {
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
-      <div role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
+      <div role="alert">The password must be between 6 and 40 characters.</div>
     );
   }
 };
@@ -64,124 +50,177 @@ const Signup = (props) => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [adress, setAdress] = useState("");
+  const [zip, setZip] = useState("");
+
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
-  const onChangeFirstname = (e) => {
-    const firstname = e.target.value;
-    setFirstname(firstname);
-  };
-
-    const onChangeLastname = (e) => {
-    const lastname = e.target.value;
-    setLastname(lastname);
-  };
-
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const handleRegister = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setMessage("");
     setSuccessful(false);
 
-    form.current.validateAll();
+    AuthService.register(
+      firstname,
+      lastname,
+      email,
+      password,
+      phone,
+      city,
+      adress,
+      zip
+    ).then(
+      (response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(firstname, lastname, email, password).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
-    }
+        setMessage(resMessage);
+        setSuccessful(false);
+      }
+    );
   };
 
   return (
-    <Form onSubmit={handleRegister} ref={form}>
-      {!successful && (
-        <div>
-          <div>
-            <label htmlFor="Firstname">Firstname</label>
-            <Input
-              type="text"
-              name="Firstname"
-              value={firstname}
-              onChange={onChangeFirstname}
-              validations={[required, vFirstname]}
-            />
+    <>
+      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">
+              Vertically centered hero sign-up form
+            </h1>
+            <p class="col-lg-10 fs-4">
+              Below is an example form built entirely with Bootstrap’s form
+              controls. Each required form group has a validation state that can
+              be triggered by attempting to submit the form without completing
+              it.
+            </p>
           </div>
-
-          <div>
-            <label htmlFor="Lastname">Lastname</label>
-            <Input
-              type="text"
-              name="Lastname"
-              value={lastname}
-              onChange={onChangeLastname}
-              validations={[required, vLastname]}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email">Email</label>
-            <Input
-              type="text"
-              name="email"
-              value={email}
-              onChange={onChangeEmail}
-              validations={[required, validEmail]}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password">Password</label>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={onChangePassword}
-              validations={[required, vpassword]}
-            />
-          </div>
-
-          <div>
-            <button>Sign Up</button>
+          <div class="col-md-10 mx-auto col-lg-5">
+            {!successful && (
+              <form class="p-4 p-md-5 border rounded-3 bg-light">
+                {message && (
+                  <div>
+                    <div
+                      style={{ marginTop: -25 }}
+                      className={
+                        successful
+                          ? "text-success mb-3 text-center"
+                          : "text-danger text-center mb-3"
+                      }
+                    >
+                      <b>{message}</b>
+                    </div>
+                  </div>
+                )}
+                <div className="row">
+                  <div class="col-sm-6 mb-3">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Prénom"
+                      value={firstname}
+                      onChange={(e) => setFirstname(e.target.value)}
+                      validations={[required, vFirstname]}
+                    />
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Nom"
+                      value={lastname}
+                      onChange={(e) => setLastname(e.target.value)}
+                      validations={[required, vLastname]}
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control"
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    validations={[required, validEmail]}
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control"
+                    type="password"
+                    placeholder="Mot de passe"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    validations={[required]}
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control mb-3"
+                    type="text"
+                    placeholder="Adresse"
+                    value={zip}
+                    onChange={(e) => setAdress(e.target.value)}
+                    validations={[required]}
+                  />
+                </div>
+                <div className="row">
+                  <div class="col-sm-6 mb-3">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Ville"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      validations={[required]}
+                    />
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <input
+                      class="form-control"
+                      type="number"
+                      placeholder="Code postale"
+                      value={zip}
+                      onChange={(e) => setZip(e.target.value)}
+                      validations={[required]}
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control mb-3"
+                    type="tel"
+                    placeholder="Telephone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    validations={[required]}
+                  />
+                </div>
+                <button
+                  class="w-100 btn btn-lg btn-primary"
+                  onClick={(e) => handleSubmit(e)}
+                  type="submit"
+                >
+                  Inscription
+                </button>
+              </form>
+            )}
           </div>
         </div>
-      )}
-
-      {message && (
-        <div>
-          <div
-            className={ successful ? "success" : "danger" }
-            role="alert"
-          >
-            {message}
-          </div>
-        </div>
-      )}
-      <CheckButton style={{ display: "none" }} ref={checkBtn} />
-    </Form>
+      </div>
+    </>
   );
 };
 

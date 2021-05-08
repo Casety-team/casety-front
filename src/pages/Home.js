@@ -39,11 +39,10 @@ const Home = () => {
             <div className="container px-5">
               <img
                 src={mobile}
-                className="img-fluid rounded-3 shadow-lg mb-4"
+                className="img-fluid rounded-3 shadow mb-4"
                 alt="mobile picture"
                 width="500"
                 height="auto"
-                loading="lazy"
               />
             </div>
           </div>

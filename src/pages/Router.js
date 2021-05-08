@@ -147,22 +147,6 @@ const Router = () => {
         <Route exact path="/admin/location" component={Location} />
         <Route exact path="/admin/locker" component={Locker} />
         <Route exact path="/admin/blog" component={Blogs} />
-        {/*
-        {showUserBoard && (
-          <>
-            {console.log("showUserBoard")}
-
-          </>
-        )}
-
-        {showAdminBoard ? (
-          <>
-            <Route exact path="/admin" component={BoardAdmin} />
-            <Route exact path="/admin/location" component={Location} />
-          </>
-        ) : (
-          <Redirect to="/" />
-        )} */}
       </Switch>
     </BrowserRouter>
   );
