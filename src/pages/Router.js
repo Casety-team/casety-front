@@ -21,8 +21,6 @@ import StripeContainer from "../Stripe/StripeContainer";
 import StripeSuccess from "../Stripe/StripeSuccess";
 
 import Profile from "./users/Profile";
-import BoardUser from "./users/BoardUser";
-import BoardModerator from "./moderator/BoardModerator";
 
 import BoardAdmin from "./admin/BoardAdmin";
 import Location from "./admin/Location";
@@ -30,7 +28,6 @@ import Locker from "./admin/Locker";
 import Blogs from "./admin/Blog";
 
 const Router = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [showUserBoard, setShowUserBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -41,7 +38,6 @@ const Router = () => {
     if (user) {
       setCurrentUser(user);
       setShowUserBoard(user.roles.includes("ROLE_USER"));
-      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
   }, []);
@@ -157,14 +153,6 @@ const Router = () => {
             {console.log("showUserBoard")}
 
           </>
-        )}
-
-        {showModeratorBoard ? (
-          <>a
-            <Route exact path="/mod" component={BoardModerator} />
-          </>
-        ) : (
-          <Redirect to="/" />
         )}
 
         {showAdminBoard ? (
