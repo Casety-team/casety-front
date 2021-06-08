@@ -58,6 +58,12 @@ const vCity = (value) => {
   }
 };
 
+const vPhone = (value) => {
+  if (value.length != 10) {
+    return <div role="alert">The zip must be between 1 and 4 characters.</div>;
+  }
+};
+
 const vZip = (value) => {
   if (value.length < 1 || value.length > 4) {
     return <div role="alert">The zip must be between 1 and 4 characters.</div>;
