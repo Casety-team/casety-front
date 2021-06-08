@@ -12,9 +12,17 @@ const required = (value) => {
   }
 };
 
-const validEmail = (value) => {
+const vEmail = (value) => {
   if (!isEmail(value)) {
     return <div role="alert">This is not a valid email.</div>;
+  }
+};
+
+const vpassword = (value) => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <div role="alert">The password must be between 6 and 40 characters.</div>
+    );
   }
 };
 
@@ -34,11 +42,25 @@ const vLastname = (value) => {
   }
 };
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+const vAdress = (value) => {
+  if (value.length < 5 || value.length > 20) {
     return (
-      <div role="alert">The password must be between 6 and 40 characters.</div>
+      <div role="alert">The adress must be between 5 and 20 characters.</div>
     );
+  }
+};
+
+const vCity = (value) => {
+  if (value.length < 1 || value.length > 20) {
+    return (
+      <div role="alert">The city must be between 1 and 20 characters.</div>
+    );
+  }
+};
+
+const vZip = (value) => {
+  if (value.length < 1 || value.length > 4) {
+    return <div role="alert">The zip must be between 1 and 4 characters.</div>;
   }
 };
 
@@ -153,7 +175,7 @@ const Signup = (props) => {
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    validations={[required, validEmail]}
+                    validations={[required, vEmail]}
                   />
                 </div>
                 <div class="mb-3">
@@ -163,7 +185,7 @@ const Signup = (props) => {
                     placeholder="Mot de passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    validations={[required]}
+                    validations={[required, vpassword]}
                   />
                 </div>
                 <div class="mb-3">
@@ -173,7 +195,7 @@ const Signup = (props) => {
                     placeholder="Adresse"
                     value={zip}
                     onChange={(e) => setAdress(e.target.value)}
-                    validations={[required]}
+                    validations={[required, vAdress]}
                   />
                 </div>
                 <div className="row">
@@ -184,7 +206,7 @@ const Signup = (props) => {
                       placeholder="Ville"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      validations={[required]}
+                      validations={[required, vCity]}
                     />
                   </div>
                   <div class="col-sm-6 mb-3">
@@ -194,7 +216,7 @@ const Signup = (props) => {
                       placeholder="Code postale"
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
-                      validations={[required]}
+                      validations={[required, vZip]}
                     />
                   </div>
                 </div>
@@ -205,7 +227,7 @@ const Signup = (props) => {
                     placeholder="Telephone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    validations={[required]}
+                    validations={[required, vPhone]}
                   />
                 </div>
                 <button
