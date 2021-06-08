@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  getAllLocker,
-  delete_locker,
-} from "../../../../services/locker.service";
+import { getAllLocker } from "../../../../services/locker.service";
 
 const TableauLocker = () => {
   const [getAll, setGetAll] = useState([]);

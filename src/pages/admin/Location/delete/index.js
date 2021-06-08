@@ -59,7 +59,7 @@ const DeleteLocation = () => {
         })}
       </select>
 
-      {getIdLocation != 0 && (
+      {getIdLocation > 0 && (
         <div className="w-90">
           <div className="card w-90 container mt-5 pb-5">
             <h4 className="mt-5">{name}</h4>

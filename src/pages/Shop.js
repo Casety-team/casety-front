@@ -70,7 +70,7 @@ const Shop = () => {
     e.preventDefault();
     ShopService.newReserver(dateDepot, dateRetrait, myLockerType, userId).then(
       (response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           ShopService.getSingleLocker(myLockerType).then((e) => {
             ShopService.buyProduct(
               e.data.name,

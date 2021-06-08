@@ -20,9 +20,6 @@ const DeleteBlog = () => {
 
   useEffect(() => {
     getAllArticle(categorieId).then((item) => setGetAll(item.data));
-  }, []);
-
-  useEffect(() => {
     getSingleCategorie(categorieId).then((item) => setGetCategorie(item.data));
   }, []);
 
@@ -55,7 +52,7 @@ const DeleteBlog = () => {
         })}
       </select>
 
-      {getIdArticle != 0 && (
+      {getIdArticle > 0 && (
         <div className="card container mt-5">
           <div className="row mt-3">
             <h1 className="text-center">{title}</h1>

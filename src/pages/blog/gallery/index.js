@@ -1,14 +1,16 @@
-import react, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAllArticle } from "../../../services/blog.service";
 import moment from "moment";
 
 const Gallery = () => {
   const [data, setData] = useState([]);
 
-  useEffect(async () => {
-    await getAllArticle().then((item) =>
-      setData(item.data.map((item) => item))
-    );
+  useEffect(() => {
+    (async () => {
+      await getAllArticle().then((item) =>
+        setData(item.data.map((item) => item))
+      );
+    })();
   }, []);
 
   return (
@@ -30,6 +32,7 @@ const Gallery = () => {
               <div class="col-auto d-none d-lg-block">
                 <img
                   src={`/pictures/${item.picture_url}`}
+                  alt={"picture"}
                   class="bd-placeholder-img"
                   style={{ objectFit: "cover" }}
                   width="200"

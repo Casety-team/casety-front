@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   getAllArticle,
-  delete_new_location,
+  //delete_new_location,
 } from "../../../../services/blog.service";
 
 const TableauBlog = () => {
@@ -14,6 +14,7 @@ const TableauBlog = () => {
   // const handleDeleteLocation = (id) => {
   //   delete_new_location(id).then((item) => console.log(item));
   // };
+
   return (
     <table class="table mt-5">
       <thead>

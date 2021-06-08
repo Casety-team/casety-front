@@ -83,7 +83,7 @@ const UpdateLocker = () => {
         })}
       </select>
 
-      {getIdLocker != 0 && (
+      {getIdLocker > 0 && (
         <div className="mt-3 container">
           <div className="w-90 container">
             <UpdateLockerType

@@ -1,27 +1,7 @@
-import React, { useState, useEffect } from "react";
-
-import UserService from "../services/user.service";
+import React from "react";
 
 import mobile from "../assets/pictures/mobile.png";
 const Home = () => {
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    UserService.getPublicContent().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-      }
-    );
-  }, []);
-
   return (
     <div className="container">
       <div className="px-4 pt-5 my-5 text-center">

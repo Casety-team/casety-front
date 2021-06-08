@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { getLocation } from "../../../../services/location.service";
 
-const DeleteLocker = ({
-  nameLocker,
-  setNameLocker,
-  locationId,
-  setLocationId,
-}) => {
+const DeleteLocker = ({ nameLocker, locationId }) => {
   const [getName, setGetName] = useState();
 
   useEffect(() => {

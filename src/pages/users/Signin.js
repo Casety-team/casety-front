@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import AuthService from "../../services/auth.service";
 
 const required = (value) => {

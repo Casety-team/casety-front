@@ -121,11 +121,9 @@ const Router = () => {
         </div>
       </nav>
       <Switch>
-        <Route exact path={["/", "/home"]} component={Home} />
+      <Route exact path={["/", "/home"]} component={Home} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/shop" component={Shop} />
         <Route
           path="stripe/charge/success/:token/?sc_checkout=success"
           component={Success}
@@ -135,13 +133,25 @@ const Router = () => {
           path="stripe/charge/error/?sc_checkout=cancel"
           component={Error}
         />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-
-        <Route exact path="/admin" component={BoardAdmin} />
-        <Route exact path="/admin/location" component={Location} />
-        <Route exact path="/admin/locker" component={Locker} />
-        <Route exact path="/admin/blog" component={Blogs} />
+        {currentUser ? (        
+            <>
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/shop" component={Shop} />
+            </>
+          ) : (
+            <>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+            </>
+        )}
+        {showAdminBoard && (
+          <>
+            <Route exact path="/admin" component={BoardAdmin} />
+            <Route exact path="/admin/location" component={Location} />
+            <Route exact path="/admin/locker" component={Locker} />
+            <Route exact path="/admin/blog" component={Blogs} />
+          </>
+        )}
       </Switch>
     </BrowserRouter>
   );

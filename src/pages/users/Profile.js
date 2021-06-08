@@ -50,25 +50,25 @@ const Profile = () => {
   };
 
   const handleUpdate = () => {
-    if (formFirstname.length == 0) {
+    if (formFirstname.length === 0) {
       setFormFirstname(firstname);
     }
-    if (formLastname.length == 0) {
+    if (formLastname.length === 0) {
       setFormLastname(lastname);
     }
-    if (formEmail.length == 0) {
+    if (formEmail.length === 0) {
       setFormEmail(email);
     }
-    if (formPhone.length == 0) {
+    if (formPhone.length === 0) {
       setFormPhone(phone);
     }
-    if (formAdress.length == 0) {
+    if (formAdress.length === 0) {
       setFormAdress(adress);
     }
-    if (formCity.length == 0) {
+    if (formCity.length === 0) {
       setFormCity(city);
     }
-    if (formZip_code.length == 0) {
+    if (formZip_code.length === 0) {
       setFormZipCode(zip_code);
     }
     User.userUpdate(

@@ -20,7 +20,6 @@ const UpdateLocation = () => {
 
   const [getAll, setGetAll] = useState([]);
   const [getIdLocation, setGetIdLocation] = useState(0);
-  const [getSelectedlocation, setGetSelectedlocation] = useState([]);
 
   useEffect(() => {
     getAllLocation().then((item) => setGetAll(item.data));
@@ -71,7 +70,7 @@ const UpdateLocation = () => {
         })}
       </select>
 
-      {getIdLocation != 0 && (
+      {getIdLocation > 0 && (
         <div className="w-90 container mt-5">
           <div className="row mt-3">
             <div className="col-sm-6">

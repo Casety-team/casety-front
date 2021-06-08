@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getSingleArticle,
   getAllArticle,
@@ -10,15 +10,19 @@ import "../blog.css";
 const Articles = () => {
   const [data, setData] = useState([]);
   const getURL = window.location.pathname.split("/")[3];
-  useEffect(async () => {
-    await getSingleArticle(getURL).then((item) => setData(item.data));
+  useEffect(() => {
+    (async () => {
+      await getSingleArticle(getURL).then((item) => setData(item.data));
+    })();
   }, []);
 
   const [dataAllArticle, setDataAllArticle] = useState([]);
-  useEffect(async () => {
-    await getAllArticle().then((item) =>
-      setDataAllArticle(item.data.map((item) => item))
-    );
+  useEffect(() => {
+    (async () => {
+      await getAllArticle().then((item) =>
+        setDataAllArticle(item.data.map((item) => item))
+      );
+    })();
   }, []);
 
   return (
@@ -30,7 +34,7 @@ const Articles = () => {
             <h2 class="blog-post-title">{data.title}</h2>
             <p class="blog-post-meta">
               {moment(data.createdAt).format("DD-MM-YYYY")} by{" "}
-              <a href="#">Casety</a>
+              <a href="/">Casety</a>
             </p>
             <h4 class="blog-post-meta">Introduction</h4>
             <p>{data.description}</p>

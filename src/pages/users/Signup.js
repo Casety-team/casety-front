@@ -1,7 +1,4 @@
-import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import React, { useState } from "react";
 import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
@@ -59,7 +56,7 @@ const vCity = (value) => {
 };
 
 const vPhone = (value) => {
-  if (value.length != 10) {
+  if (value.length !== 10) {
     return <div role="alert">The zip must be between 1 and 4 characters.</div>;
   }
 };

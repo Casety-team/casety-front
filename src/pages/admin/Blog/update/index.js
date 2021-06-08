@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import {
   getAllArticle,
-  getAllCategorie,
   getSingleArticle,
   update_new_article,
 } from "../../../../services/blog.service";
@@ -57,7 +56,7 @@ const UpdateBlog = () => {
         })}
       </select>
 
-      {getIdArticle != 0 && (
+      {getIdArticle > 0 && (
         <div className="w-90 container mt-5">
           <div className="row mt-3">
             <div className="col-sm-6">
