@@ -27,7 +27,7 @@ const Home = () => {
       <div className="px-4 pt-5 my-5 text-center">
         <div className="row mt-5">
           <div className="col-sm-6 align-middle" style={{ marginTop: 200 }}>
-            <h1>Casety sur mobile</h1>
+            <h1>Casety sur mobile Mathieu</h1>
             <p className="lead mb-4">
               Quickly design and customize responsive mobile-first sites with
               Bootstrap, the world’s most popular front-end open source toolkit,
