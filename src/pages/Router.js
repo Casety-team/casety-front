@@ -7,7 +7,7 @@ import Login from "./users/Signin";
 import Register from "./users/Signup";
 
 import Home from "./Home";
-import Blog from "./blog/";
+import Blog from "./blog";
 import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
 import Success from "./stripe/success";
@@ -88,7 +88,7 @@ const Router = () => {
                 )}
                 {showUserBoard && (
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/user/profile"}>
+                    <Link class="nav-link" to={"/profile"}>
                       Profil
                     </Link>
                   </li>
