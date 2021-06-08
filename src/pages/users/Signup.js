@@ -71,9 +71,6 @@ const vZip = (value) => {
 };
 
 const Signup = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -199,7 +196,7 @@ const Signup = (props) => {
                     class="form-control mb-3"
                     type="text"
                     placeholder="Adresse"
-                    value={zip}
+                    value={adress}
                     onChange={(e) => setAdress(e.target.value)}
                     validations={[required, vAdress]}
                   />
