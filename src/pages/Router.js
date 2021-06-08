@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
@@ -17,8 +10,8 @@ import Home from "./Home";
 import Blog from "./blog/";
 import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
-import StripeContainer from "../Stripe/StripeContainer";
-import StripeSuccess from "../Stripe/StripeSuccess";
+import Success from "./stripe/success";
+import Error from "./stripe/error";
 
 import Profile from "./users/Profile";
 
@@ -131,15 +124,17 @@ const Router = () => {
         <Route exact path={["/", "/home"]} component={Home} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/shop" component={Shop} />
-        <Route exact path="/buy/:productId" component={StripeContainer} />
+        <Route
+          path="stripe/charge/success/:token/?sc_checkout=success"
+          component={Success}
+        />
         <Route
           exact
-          path="/stripe/charge/success/:token"
-          component={StripeSuccess}
+          path="stripe/charge/error/?sc_checkout=cancel"
+          component={Error}
         />
-
-        <Route exact path="/user/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 

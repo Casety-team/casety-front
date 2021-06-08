@@ -70,13 +70,18 @@ const Shop = () => {
     e.preventDefault();
     ShopService.newReserver(dateDepot, dateRetrait, myLockerType, userId).then(
       (response) => {
-        console.log(response);
         if (response.status == 200) {
-          window.location = "/buy/" + myLocation;
+          ShopService.getSingleLocker(myLockerType).then((e) => {
+            ShopService.buyProduct(
+              e.data.name,
+              e.data.price,
+              userId,
+              response.data.id
+            );
+          });
         }
       },
       (error) => {
-        console.log(error);
         const resMessage =
           (error.response &&
             error.response.data &&
@@ -92,71 +97,96 @@ const Shop = () => {
 
   return (
     <>
-      {!currentUser ? (
-        <a href="/login">Go login</a>
-      ) : (
-        <form
-          className="mt-5 container"
-          onSubmit={createReserver}
-          style={{ paddingTop: 30 }}
-        >
-          <label htmlFor="lieu">Choisissez un lieu </label>
-          <select
-            name="lieu"
-            value={myLocation}
-            onChange={(item) => setMyLocation(item.target.value)}
-          >
-            <option value="0" selected />
-            {location.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-
-          <label htmlFor="type">Choisissez un type de casier </label>
-          <select
-            name="type"
-            value={myLockerType}
-            onChange={(item) => {
-              setMyLockerType(item.target.value);
-            }}
-          >
-            {lockerType.map((item) => {
-              return (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-
-          <label for="start">Date de dépot</label>
-          <input
-            name="start"
-            type="datetime-local"
-            min="2020-06-01T08:30"
-            onChange={(item) => {
-              setMyDateDepot(
-                moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
-              );
-            }}
-          />
-          <label for="end">Date de retrait</label>
-          <input
-            name="end"
-            type="datetime-local"
-            min="2020-06-01T08:30"
-            onChange={(item) => {
-              setMyDateRetrait(
-                moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
-              );
-            }}
-          />
-
-          <input type="submit" value="Commander" />
-        </form>
-      )}
+      <div class="container-fluid col-xl-10 mt-5 col-xxl-8 px-4 py-5">
+        <h1 class="display-4 fw-bold lh-1 text-center mb-3">
+          Commander un Casier
+        </h1>
+        <div class="row align-items-center g-lg-5">
+          <div class="col-md-8 mx-auto col-lg-8">
+            {!currentUser ? (
+              <a href="/login">Go login</a>
+            ) : (
+              <form className="mt-5 container" style={{ paddingTop: 30 }}>
+                <div className="row">
+                  <div class="col-sm-6 mb-3">
+                    <select
+                      class="form-select"
+                      aria-label="Lieux"
+                      value={myLocation}
+                      onChange={(item) => setMyLocation(item.target.value)}
+                    >
+                      <option selected>Lieu</option>
+                      {location.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <select
+                      class="form-select"
+                      aria-label="Lieux"
+                      value={myLockerType}
+                      onChange={(item) => setMyLockerType(item.target.value)}
+                    >
+                      <option selected>Types de casier</option>
+                      {lockerType.map((item) => {
+                        return (
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    placeholder="Date de dépot"
+                    class="form-control"
+                    type="datetime-local"
+                    min="2020-06-01T08:30"
+                    onChange={(item) => {
+                      setMyDateDepot(
+                        moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
+                      );
+                    }}
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control"
+                    placeholder="Date de retrait"
+                    type="datetime-local"
+                    min="2020-06-01T08:30"
+                    onChange={(item) => {
+                      setMyDateRetrait(
+                        moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
+                      );
+                    }}
+                  />
+                </div>
+                <button
+                  class="w-100 btn btn-lg btn-primary"
+                  onClick={(e) => createReserver(e)}
+                  type="submit"
+                >
+                  Commander
+                </button>
+              </form>
+            )}
+          </div>
+          <div class="col-lg-4 text-center text-lg-start">
+            <p class="col-lg-12 fs-6">
+              Below is an example form built entirely with Bootstrap’s form
+              controls. Each required form group has a validation state that can
+              be triggered by attempting to submit the form without completing
+              it.
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
