@@ -227,6 +227,7 @@ const Signup = (props) => {
                   <input
                     class="form-control mb-3"
                     type="tel"
+                    pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
                     placeholder="Telephone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
