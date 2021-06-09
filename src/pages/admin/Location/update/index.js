@@ -60,13 +60,19 @@ const UpdateLocation = () => {
   return (
     <div className="mt-3 container">
       <select
-        class="form-select"
+        className="form-select"
         value={getIdLocation}
         onChange={(item) => setGetIdLocation(item.target.value)}
       >
-        <option selected>Selectionner un lieux</option>
-        {getAll.map((item) => {
-          return <option value={item.id}>{item.name}</option>;
+        <option value="default" selected>
+          Selectionner un lieux
+        </option>
+        {getAll.map((item, i) => {
+          return (
+            <option key={i} value={item.id}>
+              {item.name}
+            </option>
+          );
         })}
       </select>
 

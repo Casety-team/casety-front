@@ -51,10 +51,10 @@ const Location = () => {
 
       <div className="row mt-5">
         <div className="col-sm-8">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="tableau">
+          <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item" role="tableau">
               <button
-                class="nav-link active"
+                className="nav-link active"
                 id="tableau-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#tableau"
@@ -66,9 +66,9 @@ const Location = () => {
                 Tableau
               </button>
             </li>
-            <li class="nav-item" role="create">
+            <li className="nav-item" role="create">
               <button
-                class="nav-link"
+                className="nav-link"
                 id="create-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#create"
@@ -80,9 +80,9 @@ const Location = () => {
                 Créer
               </button>
             </li>
-            <li class="nav-item" role="presentation">
+            <li className="nav-item" role="presentation">
               <button
-                class="nav-link"
+                className="nav-link"
                 id="profile-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#profile"
@@ -94,9 +94,9 @@ const Location = () => {
                 Mettre à jour
               </button>
             </li>
-            <li class="nav-item" role="presentation">
+            <li className="nav-item" role="presentation">
               <button
-                class="nav-link"
+                className="nav-link"
                 id="contact-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#contact"
@@ -109,9 +109,9 @@ const Location = () => {
               </button>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent">
+          <div className="tab-content" id="myTabContent">
             <div
-              class="tab-pane fade show active"
+              className="tab-pane fade show active"
               id="tableau"
               role="tabpanel"
               aria-labelledby="tableau-tab"
@@ -119,7 +119,7 @@ const Location = () => {
               <TableauLocation />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="create"
               role="tabpanel"
               aria-labelledby="create-tab"
@@ -127,7 +127,7 @@ const Location = () => {
               <CreateLocation />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
@@ -135,7 +135,7 @@ const Location = () => {
               <UpdateLocation />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="contact"
               role="tabpanel"
               aria-labelledby="contact-tab"
@@ -145,11 +145,11 @@ const Location = () => {
           </div>
         </div>
         <div className="col-sm-4 container mt-5">
-          <div class="text-center mb-5">
+          <div className="text-center mb-5">
             <img src={logo} alt="casety logo" />
           </div>
           <div className="card ">
-            <div class="card-header">Raccourcis</div>
+            <div className="card-header">Raccourcis</div>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <a href="/admin/">DashBoard</a>

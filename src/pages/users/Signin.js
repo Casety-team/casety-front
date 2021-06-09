@@ -19,7 +19,7 @@ const Signin = (props) => {
 
     AuthService.login(email, password).then(
       () => {
-        props.history.push("/user/profile/");
+        props.history.push("/profile");
         window.location.reload();
       },
       (error) => {

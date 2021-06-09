@@ -71,11 +71,13 @@ const CreateBlog = () => {
 
         <div className="col-sm-12 mt-3">
           <select
-            class="form-select"
+            className="form-select"
             value={categorieId}
             onChange={(item) => setCategorieId(item.target.value)}
           >
-            <option selected>Selectionner une catégorie</option>
+            <option value="default" selected>
+              Selectionner une catégorie
+            </option>
             {getAll.map((item) => {
               return <option value={item.id}>{item.name}</option>;
             })}

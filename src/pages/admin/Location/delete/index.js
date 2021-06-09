@@ -53,9 +53,15 @@ const DeleteLocation = () => {
         value={getIdLocation}
         onChange={(item) => setGetIdLocation(item.target.value)}
       >
-        <option selected>Selectionner un lieux à supprimer</option>
-        {getAll.map((item) => {
-          return <option value={item.id}>{item.name}</option>;
+        <option value="default" selected>
+          Selectionner un lieux à supprimer
+        </option>
+        {getAll.map((item, i) => {
+          return (
+            <option key={i} value={item.id}>
+              {item.name}
+            </option>
+          );
         })}
       </select>
 

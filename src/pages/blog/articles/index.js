@@ -26,28 +26,28 @@ const Articles = () => {
   }, []);
 
   return (
-    <main class="container mt-5">
-      <div class="row">
-        <div class="col-md-8">
-          <h3 class="pb-4 mb-4 fst-italic border-bottom">Casety - Blog</h3>
-          <article class="blog-post">
-            <h2 class="blog-post-title">{data.title}</h2>
-            <p class="blog-post-meta">
+    <main className="container" style={{ marginTop: 100 }}>
+      <div className="row">
+        <div className="col-md-8">
+          <h3 className="pb-4 mb-4 fst-italic border-bottom">Casety - Blog</h3>
+          <article className="blog-post">
+            <h2 className="blog-post-title">{data.title}</h2>
+            <p className="blog-post-meta">
               {moment(data.createdAt).format("DD-MM-YYYY")} by{" "}
               <a href="/">Casety</a>
             </p>
-            <h4 class="blog-post-meta">Introduction</h4>
+            <h4 className="blog-post-meta">Introduction</h4>
             <p>{data.description}</p>
             <hr />
-            <h3 class="blog-post-meta">Article</h3>
+            <h3 className="blog-post-meta">Article</h3>
             <p>{data.text}</p>
           </article>
         </div>
 
-        <div class="col-md-4">
-          <div class="p-4 mb-3 bg-light rounded">
-            <h4 class="fst-italic">A propos</h4>
-            <p class="mb-0">
+        <div className="col-md-4">
+          <div className="p-4 mb-3 bg-light rounded">
+            <h4 className="fst-italic">A propos</h4>
+            <p className="mb-0">
               Ne vous souciez plus de vos affaires pendant la journée, et
               profitez pleinement de la vie Parisienne, grâce aux casiers
               autonomes Casety ! Les Casety sont à votre disposition pour
@@ -55,9 +55,9 @@ const Articles = () => {
             </p>
           </div>
 
-          <div class="p-4">
-            <h4 class="fst-italic">Autres articles</h4>
-            <ol class="list-unstyled mb-0">
+          <div className="p-4">
+            <h4 className="fst-italic">Autres articles</h4>
+            <ol className="list-unstyled mb-0">
               {dataAllArticle.map((item) => {
                 return (
                   <li>

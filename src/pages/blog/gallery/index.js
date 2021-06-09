@@ -14,26 +14,26 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div class="row mb-2">
-      {data.map((item) => {
+    <div className="row mb-2" style={{ marginTop: 100 }}>
+      {data.map((item, i) => {
         return (
-          <div class="col-md-6">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div class="col p-4 d-flex flex-column position-static">
-                <h3 class="mb-0">{item.title}</h3>
-                <div class="mb-1 text-muted">
+          <div key={i} className="col-md-6">
+            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div className="col p-4 d-flex flex-column position-static">
+                <h3 className="mb-0">{item.title}</h3>
+                <div className="mb-1 text-muted">
                   poster le {moment(item.createdAt).format("MM-DD-YYYY")}
                 </div>
-                <p class="card-text mb-auto">{item.description}</p>
-                <a href={`/blog/article/${item.id}`} class="stretched-link">
+                <p className="card-text mb-auto">{item.description}</p>
+                <a href={`/blog/article/${item.id}`} className="stretched-link">
                   Continue reading
                 </a>
               </div>
-              <div class="col-auto d-none d-lg-block">
+              <div className="col-auto d-none d-lg-block">
                 <img
                   src={`/pictures/${item.picture_url}`}
                   alt={"picture"}
-                  class="bd-placeholder-img"
+                  className="bd-placeholder-img"
                   style={{ objectFit: "cover" }}
                   width="200"
                   height="250"

@@ -85,16 +85,16 @@ const Profile = () => {
 
   return (
     <div className="container mt-5">
-      <div class="row gutters-sm " style={{ marginTop: 100 }}>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex flex-column align-items-center text-center">
-                <div class="mt-3">
+      <div className="row gutters-sm " style={{ marginTop: 100 }}>
+        <div className="col-md-4 mb-3">
+          <div className="card">
+            <div className="card-body">
+              <div className="d-flex flex-column align-items-center text-center">
+                <div className="mt-3">
                   <h4>
                     {firstname} {lastname}
                   </h4>
-                  <p class="text-muted font-size-sm">
+                  <p className="text-muted font-size-sm">
                     Status:
                     <span style={{ fontSize: 13 }}>
                       {currentUser.roles &&
@@ -103,11 +103,11 @@ const Profile = () => {
                         )}
                     </span>
                   </p>
-                  <button class="btn btn-danger" onClick={() => handleDelete()}>
+                  <button className="btn btn-danger" onClick={() => handleDelete()}>
                     Supprimer mon compte
                   </button>
                   <button
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     style={{ marginLeft: 10 }}
                     onClick={() => window.location.replace("user/reservers")}
                   >
@@ -118,9 +118,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div className="col-md-8">
           <button
-            class="btn btn-primary mb-2"
+            className="btn btn-primary mb-2"
             style={{ marginLeft: 0 }}
             onClick={() => setFormUpdate(!formUpdate)}
           >
@@ -128,7 +128,7 @@ const Profile = () => {
           </button>
           {formUpdate && (
             <button
-              class="btn btn-success mb-2"
+              className="btn btn-success mb-2"
               style={{ marginLeft: 10 }}
               onClick={() => {
                 handleUpdate();
@@ -139,13 +139,13 @@ const Profile = () => {
             </button>
           )}
 
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Prénom / Nom</h6>
+          <div className="card mb-3">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Prénom / Nom</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {formUpdate ? (
                     <>
                       <input
@@ -166,11 +166,11 @@ const Profile = () => {
                 </div>
               </div>
               <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Email</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {formUpdate ? (
                     <input
                       type="email"
@@ -183,11 +183,11 @@ const Profile = () => {
                 </div>
               </div>
               <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Mobile</h6>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Mobile</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {" "}
                   {formUpdate ? (
                     <input
@@ -201,11 +201,11 @@ const Profile = () => {
                 </div>
               </div>
               <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Adresse</h6>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Adresse</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {formUpdate ? (
                     <input
                       type="text"
@@ -218,12 +218,12 @@ const Profile = () => {
                 </div>
               </div>
               <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">city</h6>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">city</h6>
                 </div>
 
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {formUpdate ? (
                     <input
                       type="text"
@@ -236,11 +236,11 @@ const Profile = () => {
                 </div>
               </div>
               <hr />
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Code postale</h6>
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Code postale</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">
+                <div className="col-sm-9 text-secondary">
                   {formUpdate ? (
                     <input
                       type="number"

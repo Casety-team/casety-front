@@ -19,13 +19,19 @@ const UpdateLocker = ({
       <div className="row mt-3">
         <div className="col-sm-6">
           <select
-            class="form-select"
+            className="form-select"
             value={locationId}
             onChange={(item) => setLocationId(item.target.value)}
           >
-            <option selected>Selectionner un lieux</option>
-            {getAll.map((item) => {
-              return <option value={item.id}>{item.name}</option>;
+            <option value="defualt" selected>
+              Selectionner un lieux
+            </option>
+            {getAll.map((item, i) => {
+              return (
+                <option key={i} value={item.id}>
+                  {item.name}
+                </option>
+              );
             })}
           </select>
         </div>

@@ -16,7 +16,7 @@ const TableauBlog = () => {
   // };
 
   return (
-    <table class="table mt-5">
+    <table className="table mt-5">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -37,7 +37,7 @@ const TableauBlog = () => {
             {/* <td>
               <button
                 type="button"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 onClick={() => handleDeleteLocation(item.id)}
               >
                 Supprimer

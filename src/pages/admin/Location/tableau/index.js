@@ -15,7 +15,7 @@ const TableauLocation = () => {
     delete_new_location(id).then((item) => console.log(item));
   };
   return (
-    <table class="table mt-5">
+    <table className="table mt-5">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -28,8 +28,8 @@ const TableauLocation = () => {
         </tr>
       </thead>
       <tbody>
-        {getAll.map((item) => (
-          <tr>
+        {getAll.map((item, i) => (
+          <tr key={i}>
             <th scope="row">{item.id}</th>
             <td>{item.name}</td>
             <td>{item.first_adress}</td>
@@ -41,7 +41,7 @@ const TableauLocation = () => {
             <td>
               <button
                 type="button"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 onClick={() => handleDeleteLocation(item.id)}
               >
                 Supprimer

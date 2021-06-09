@@ -16,8 +16,7 @@ const Shop = () => {
   const [dateRetrait, setMyDateRetrait] = useState("");
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
-
-  console.log(myLocation);
+  
   useEffect(() => {
     ShopService.getAllLocations().then(
       (response) => {
@@ -97,25 +96,25 @@ const Shop = () => {
 
   return (
     <>
-      <div class="container-fluid col-xl-10 mt-5 col-xxl-8 px-4 py-5">
-        <h1 class="display-4 fw-bold lh-1 text-center mb-3">
+      <div className="container-fluid col-xl-10 mt-5 col-xxl-8 px-4 py-5">
+        <h1 className="display-4 fw-bold lh-1 text-center mb-3">
           Commander un Casier
         </h1>
-        <div class="row align-items-center g-lg-5">
-          <div class="col-md-8 mx-auto col-lg-8">
+        <div className="row align-items-center g-lg-5">
+          <div className="col-md-8 mx-auto col-lg-8">
             {!currentUser ? (
               <a href="/login">Go login</a>
             ) : (
               <form className="mt-5 container" style={{ paddingTop: 30 }}>
                 <div className="row">
-                  <div class="col-sm-6 mb-3">
+                  <div className="col-sm-6 mb-3">
                     <select
-                      class="form-select"
+                      className="form-select"
                       aria-label="Lieux"
                       value={myLocation}
                       onChange={(item) => setMyLocation(item.target.value)}
                     >
-                      <option selected>Lieu</option>
+                      <option value="default" selected>Lieu</option>
                       {location.map((item) => (
                         <option key={item.id} value={item.id}>
                           {item.name}
@@ -123,14 +122,14 @@ const Shop = () => {
                       ))}
                     </select>
                   </div>
-                  <div class="col-sm-6 mb-3">
+                  <div className="col-sm-6 mb-3">
                     <select
-                      class="form-select"
+                      className="form-select"
                       aria-label="Lieux"
                       value={myLockerType}
                       onChange={(item) => setMyLockerType(item.target.value)}
                     >
-                      <option selected>Types de casier</option>
+                      <option value="default" selected>Types de casier</option>
                       {lockerType.map((item) => {
                         return (
                           <option key={item.id} value={item.id}>
@@ -141,10 +140,10 @@ const Shop = () => {
                     </select>
                   </div>
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     placeholder="Date de dépot"
-                    class="form-control"
+                    className="form-control"
                     type="datetime-local"
                     min="2020-06-01T08:30"
                     onChange={(item) => {
@@ -154,9 +153,9 @@ const Shop = () => {
                     }}
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
-                    class="form-control"
+                    className="form-control"
                     placeholder="Date de retrait"
                     type="datetime-local"
                     min="2020-06-01T08:30"
@@ -168,7 +167,7 @@ const Shop = () => {
                   />
                 </div>
                 <button
-                  class="w-100 btn btn-lg btn-primary"
+                  className="w-100 btn btn-lg btn-primary"
                   onClick={(e) => createReserver(e)}
                   type="submit"
                 >
@@ -177,8 +176,8 @@ const Shop = () => {
               </form>
             )}
           </div>
-          <div class="col-lg-4 text-center text-lg-start">
-            <p class="col-lg-12 fs-6">
+          <div className="col-lg-4 text-center text-lg-start">
+            <p className="col-lg-12 fs-6">
               Below is an example form built entirely with Bootstrap’s form
               controls. Each required form group has a validation state that can
               be triggered by attempting to submit the form without completing

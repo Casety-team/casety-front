@@ -41,13 +41,13 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-          <Link class="navbar-brand" to={"/"}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to={"/"}>
             Casety
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -55,61 +55,59 @@ const Router = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <Link class="nav-link active" to={"/home"}>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link active" to={"/home"}>
                     Accueil
                   </Link>
                 </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to={"/shop"}>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/shop"}>
                     Boutique
                   </Link>
                 </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to={"/blog"}>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/blog"}>
                     Blog
                   </Link>
                 </li>
               </ul>
             </div>
-            <div class="d-flex">
-              <ul class="navbar-nav">
+            <div className="d-flex">
+              <ul className="navbar-nav">
                 {showAdminBoard && (
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/admin"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/admin"}>
                       Dashboard
                     </Link>
                   </li>
                 )}
                 {showUserBoard && (
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/profile"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/profile"}>
                       Profil
                     </Link>
                   </li>
                 )}
                 {currentUser ? (
-                  <>
-                    <li class="nav-item">
-                      <a href="/login" class="nav-link" onClick={logOut}>
+                    <li className="nav-item">
+                      <a href="/login" className="nav-link" onClick={logOut}>
                         Déconnexion
                       </a>
                     </li>
-                  </>
                 ) : (
                   <>
-                    <li class="nav-item">
-                      <Link class="nav-link" to={"/login"}>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/login"}>
                         Connexion
                       </Link>
                     </li>
-                    <li class="nav-item">
-                      <Link class="nav-link" to={"/register"}>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/register"}>
                         Inscription
                       </Link>
                     </li>
@@ -133,7 +131,16 @@ const Router = () => {
           path="stripe/charge/error/?sc_checkout=cancel"
           component={Error}
         />
-        {currentUser ? (        
+        {currentUser ? showAdminBoard ? (
+          <>
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/shop" component={Shop} />
+            <Route exact path={"/admin"} component={BoardAdmin} />
+            <Route exact path="/admin/location" component={Location} />
+            <Route exact path="/admin/locker" component={Locker} />
+            <Route exact path="/admin/blog" component={Blogs} />
+          </>
+        ) : (        
             <>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/shop" component={Shop} />
@@ -143,14 +150,6 @@ const Router = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </>
-        )}
-        {showAdminBoard && (
-          <>
-            <Route exact path="/admin" component={BoardAdmin} />
-            <Route exact path="/admin/location" component={Location} />
-            <Route exact path="/admin/locker" component={Locker} />
-            <Route exact path="/admin/blog" component={Blogs} />
-          </>
         )}
       </Switch>
     </BrowserRouter>

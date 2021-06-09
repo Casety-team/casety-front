@@ -6,7 +6,7 @@ const Home = () => {
     <div className="container">
       <div className="px-4 pt-5 my-5 text-center">
         <div className="row mt-5">
-          <div className="col-sm-6 align-middle" style={{ marginTop: 200 }}>
+          <div className="col align-middle" style={{ marginTop: 200 }}>
             <h1>Casety sur mobile Mathieu</h1>
             <p className="lead mb-4">
               Quickly design and customize responsive mobile-first sites with
@@ -15,7 +15,7 @@ const Home = () => {
               extensive prebuilt components, and powerful JavaScript plugins.
             </p>
           </div>
-          <div className="overflow-hidden col-sm-6">
+          <div className="col">
             <div className="container px-5">
               <img
                 src={mobile}
@@ -31,7 +31,7 @@ const Home = () => {
 
       <div className="px-4 pt-5 my-5 text-center">
         <div className="row mt-5">
-          <div className="col-sm-6">
+          <div className="col">
             <div className="container px-5">
               <img
                 src={mobile}
@@ -44,7 +44,7 @@ const Home = () => {
             </div>
           </div>
           <div
-            className="overflow-hidden col-sm-6 align-middle"
+            className="col align-middle"
             style={{ marginTop: 300 }}
           >
             <h1>Casety sur Web</h1>

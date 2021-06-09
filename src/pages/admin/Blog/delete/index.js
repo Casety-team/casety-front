@@ -46,7 +46,9 @@ const DeleteBlog = () => {
         value={getIdArticle}
         onChange={(item) => setGetIdArticle(item.target.value)}
       >
-        <option selected>Selectionner un article</option>
+        <option value="default" selected>
+          Selectionner un article
+        </option>
         {getAll.map((item) => {
           return <option value={item.id}>{item.title}</option>;
         })}
