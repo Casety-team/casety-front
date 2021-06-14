@@ -10,6 +10,8 @@ import Home from "./Home";
 import Blog from "./blog";
 import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
+import ShopView from "./ShopView";
+import Terms from "./Terms";
 import Success from "./stripe/success";
 import Error from "./stripe/error";
 
@@ -66,10 +68,17 @@ const Router = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/shop"}>
-                    Boutique
+                  <Link className="nav-link" to={"/shopview"}>
+                    Nos casiers
                   </Link>
                 </li>
+                {showUserBoard && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/shop"}>
+                      Boutique
+                    </Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link className="nav-link" to={"/blog"}>
                     Blog
@@ -120,8 +129,10 @@ const Router = () => {
       </nav>
       <Switch>
       <Route exact path={["/", "/home"]} component={Home} />
+      <Route exact path="/shopview" component={ShopView} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
+        <Route exact path="/terms" component={Terms} />
         <Route
           path="stripe/charge/success/:token/?sc_checkout=success"
           component={Success}

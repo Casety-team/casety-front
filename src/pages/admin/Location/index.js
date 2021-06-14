@@ -162,6 +162,9 @@ const Location = () => {
               <li className="list-group-item">
                 <a href="/admin/locker">Locker</a>
               </li>
+              <li className="list-group-item">
+                  <a href="/admin/blog">Blog</a>
+                </li>
             </ul>
           </div>
         </div>

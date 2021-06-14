@@ -10,7 +10,9 @@ const register = (
   phone,
   city,
   adress,
-  zip
+  zip,
+  terms,
+  newsletters
 ) => {
   return axios.post(API_URL + "auth/signup", {
     firstname,
@@ -21,6 +23,8 @@ const register = (
     city,
     adress,
     zip,
+    terms,
+    newsletters
   });
 };
 

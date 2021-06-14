@@ -34,12 +34,14 @@ const Articles = () => {
             <h2 className="blog-post-title">{data.title}</h2>
             <p className="blog-post-meta">
               {moment(data.createdAt).format("DD-MM-YYYY")} by{" "}
-              <a href="/">Casety</a>
+              <span className="font-weight-bold">Casety</span>
             </p>
             <h4 className="blog-post-meta">Introduction</h4>
             <p>{data.description}</p>
             <hr />
-            <h3 className="blog-post-meta">Article</h3>
+            <img style={{width: "100%",height: "auto", borderRadius: "21px 21px 0 0"}} src={"/pictures/"+data.picture_url}/>
+            <h3 className="blog-post-meta mt-5">Article</h3>
+            <hr/>
             <p>{data.text}</p>
           </article>
         </div>

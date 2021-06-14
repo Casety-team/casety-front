@@ -60,16 +60,19 @@ const BoardAdmin = () => {
             <div className="card ">
               <div class="card-header">Raccourcis</div>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <a href="/admin/">DashBoard</a>
-                </li>
                 <li className="list-group-item active">
-                  <a href="/admin/location" className="link-light">
+                  <a href="/admin/"  className="link-light">DashBoard</a>
+                </li>
+                <li className="list-group-item ">
+                  <a href="/admin/location">
                     Location
                   </a>
                 </li>
                 <li className="list-group-item">
                   <a href="/admin/locker">Locker</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/admin/blog">Blog</a>
                 </li>
               </ul>
             </div>

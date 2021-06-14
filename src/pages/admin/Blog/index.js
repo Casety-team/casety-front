@@ -180,14 +180,17 @@ const Blog = () => {
               <li className="list-group-item">
                 <a href="/admin/">DashBoard</a>
               </li>
-              <li className="list-group-item active">
-                <a href="/admin/location" className="link-light">
+              <li className="list-group-item">
+                <a href="/admin/location">
                   Location
                 </a>
               </li>
               <li className="list-group-item">
                 <a href="/admin/locker">Locker</a>
               </li>
+              <li className="list-group-item active">
+                  <a href="/admin/blog"  className="link-light">Blog</a>
+                </li>
             </ul>
           </div>
         </div>
