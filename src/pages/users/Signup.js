@@ -83,21 +83,20 @@ const Signup = (props) => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
-  
-
     e.preventDefault();
     setMessage("");
     setSuccessful(false);
 
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     const name = e.target.name;
-    if(name === 'newsletter') {
-      setNewsletters(value)
-    } else if( name === 'terms') {
-      setTerms(value)
+    if (name === "newsletter") {
+      setNewsletters(value);
+    } else if (name === "terms") {
+      setTerms(value);
     }
 
-    if(terms === true) {
+    if (terms === true) {
       AuthService.register(
         firstname,
         lastname,
@@ -113,6 +112,7 @@ const Signup = (props) => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          window.location.replace("/login");
         },
         (error) => {
           const resMessage =
@@ -121,7 +121,7 @@ const Signup = (props) => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-  
+
           setMessage(resMessage);
           setSuccessful(false);
         }
@@ -134,11 +134,10 @@ const Signup = (props) => {
       <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="row align-items-center g-lg-5 py-5">
           <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">
-              Inscrivez-vous
-            </h1>
+            <h1 class="display-4 fw-bold lh-1 mb-3">Inscrivez-vous</h1>
             <p class="col-lg-10 fs-4">
-              Déposez vos bagages dans les commerces / hotels et profitez de votre journée !
+              Déposez vos bagages dans les commerces / hotels et profitez de
+              votre journée !
             </p>
           </div>
           <div class="col-md-10 mx-auto col-lg-5">
@@ -245,10 +244,25 @@ const Signup = (props) => {
                 </div>
                 <div class="checkbox mb-3">
                   <label>
-                    <input name="newsletters" type="checkbox" checked={newsletters} onChange={(e) => setNewsletters(!newsletters)}/> Inscription à la newsletter
+                    <input
+                      name="newsletters"
+                      type="checkbox"
+                      checked={newsletters}
+                      onChange={(e) => setNewsletters(!newsletters)}
+                    />{" "}
+                    Inscription à la newsletter
                   </label>
                   <label>
-                    <input name="terms" type="checkbox" checked={terms} onChange={(e) => setTerms(!terms)}/> <a href="/terms" target="_blank"> Conditions genéral d'utilisation</a>
+                    <input
+                      name="terms"
+                      type="checkbox"
+                      checked={terms}
+                      onChange={(e) => setTerms(!terms)}
+                    />{" "}
+                    <a href="/terms" target="_blank">
+                      {" "}
+                      Conditions genéral d'utilisation
+                    </a>
                   </label>
                 </div>
                 <button
