@@ -53,7 +53,7 @@ const deleteUser = (id) => {
   return axios.post(API_URL + "user/" + id, { headers: authHeader() });
 };
 
-export default {
+const exportedObject = {
   getPublicContent,
   getUser,
   userUpdate,
@@ -62,3 +62,5 @@ export default {
   getModeratorBoard,
   getAdminBoard,
 };
+
+export default exportedObject;

@@ -21,7 +21,7 @@ const DeleteBlog = () => {
   useEffect(() => {
     getAllArticle(categorieId).then((item) => setGetAll(item.data));
     getSingleCategorie(categorieId).then((item) => setGetCategorie(item.data));
-  }, []);
+  }, [categorieId]);
 
   useEffect(() => {
     getSingleArticle(getIdArticle).then((item) => {

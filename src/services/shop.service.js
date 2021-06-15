@@ -52,7 +52,7 @@ const buyProduct = (nameProduct, unitAmount, userId, reservationId) => {
     });
 };
 
-export default {
+const exportedObject = {
   getAllLocations,
   getSingleLocation,
   getSingleLocker,
@@ -61,3 +61,5 @@ export default {
   newReserver,
   buyProduct,
 };
+
+export default exportedObject;

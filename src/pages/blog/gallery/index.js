@@ -32,7 +32,7 @@ const Gallery = () => {
               <div className="col-auto d-none d-lg-block">
                 <img
                   src={`/pictures/${item.picture_url}`}
-                  alt={"picture"}
+                  alt={"location"}
                   className="bd-placeholder-img"
                   style={{ objectFit: "cover" }}
                   width="200"

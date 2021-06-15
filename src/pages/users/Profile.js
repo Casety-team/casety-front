@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AuthService from "../../services/auth.service";
 import User from "../../services/user.service";
 
@@ -22,26 +22,16 @@ const Profile = () => {
   const [zip_code, setZipCode] = useState("");
   const [phone, setPhone] = useState("");
 
-  useEffect(() => {
-    User.getUser(currentUser.id).then((item) => {
-      const {
-        firstname,
-        lastname,
-        email,
-        city,
-        adress,
-        zip,
-        phone,
-      } = item.data;
-      setFirstname(firstname);
-      setLastname(lastname);
-      setEmail(email);
-      setZipCode(zip);
-      setCity(city);
-      setAdress(adress);
-      setPhone(phone);
-    });
-  }, [User.getUser(currentUser.id)]);
+  User.getUser(currentUser.id).then((item) => {
+    const { firstname, lastname, email, city, adress, zip, phone } = item.data;
+    setFirstname(firstname);
+    setLastname(lastname);
+    setEmail(email);
+    setZipCode(zip);
+    setCity(city);
+    setAdress(adress);
+    setPhone(phone);
+  });
 
   const handleDelete = () => {
     User.deleteUser(currentUser.id);
@@ -103,7 +93,10 @@ const Profile = () => {
                         )}
                     </span>
                   </p>
-                  <button className="btn btn-danger" onClick={() => handleDelete()}>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete()}
+                  >
                     Supprimer mon compte
                   </button>
                   <button

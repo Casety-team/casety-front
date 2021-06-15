@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import UserService from "../../services/user.service";
 
 import logo from "../../assets/pictures/dark_logo.png";
 
 const BoardAdmin = () => {
-  const [content, setContent] = useState("");
   useEffect(() => {
-    UserService.getAdminBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-      }
-    );
+    UserService.getAdminBoard();
   }, []);
   return (
     <div className="mt-5 container">
@@ -51,8 +36,7 @@ const BoardAdmin = () => {
       </ul>
       <main className="container">
         <div className="row container mt-5">
-          <div className="col-sm-8">
-          </div>
+          <div className="col-sm-8"></div>
           <div className="col-sm-4 container mt-5">
             <div class="text-center mb-5">
               <img src={logo} alt="casety logo" />
@@ -61,12 +45,12 @@ const BoardAdmin = () => {
               <div class="card-header">Raccourcis</div>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item active">
-                  <a href="/admin/"  className="link-light">DashBoard</a>
+                  <a href="/admin/" className="link-light">
+                    DashBoard
+                  </a>
                 </li>
                 <li className="list-group-item ">
-                  <a href="/admin/location">
-                    Location
-                  </a>
+                  <a href="/admin/location">Location</a>
                 </li>
                 <li className="list-group-item">
                   <a href="/admin/locker">Locker</a>

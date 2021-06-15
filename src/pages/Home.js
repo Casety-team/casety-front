@@ -21,7 +21,7 @@ const Home = () => {
               <img
                 src={mobile}
                 className="img-fluid rounded-3 shadow mb-4"
-                alt="web picture"
+                alt="mobile"
                 width="500"
                 height="auto"
               />
@@ -29,7 +29,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

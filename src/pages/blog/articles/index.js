@@ -14,7 +14,7 @@ const Articles = () => {
     (async () => {
       await getSingleArticle(getURL).then((item) => setData(item.data));
     })();
-  }, []);
+  }, [getURL]);
 
   const [dataAllArticle, setDataAllArticle] = useState([]);
   useEffect(() => {
@@ -39,9 +39,17 @@ const Articles = () => {
             <h4 className="blog-post-meta">Introduction</h4>
             <p>{data.description}</p>
             <hr />
-            <img style={{width: "100%",height: "auto", borderRadius: "21px 21px 0 0"}} src={"/pictures/"+data.picture_url}/>
+            <img
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "21px 21px 0 0",
+              }}
+              src={"/pictures/" + data.picture_url}
+              alt="location"
+            />
             <h3 className="blog-post-meta mt-5">Article</h3>
-            <hr/>
+            <hr />
             <p>{data.text}</p>
           </article>
         </div>

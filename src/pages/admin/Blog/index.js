@@ -18,7 +18,7 @@ const Blog = () => {
         console.log("Success Admin connect");
       },
       (error) => {
-        console.log("Fail connect Admin");
+        console.log("Fail connect Admin", error);
       }
     );
   }, []);
@@ -58,7 +58,7 @@ const Blog = () => {
       <div className="row mt-5">
         <div className="col-sm-8">
           <ul className="nav nav-tabs" id="myTab" role="tablist">
-            <li className="nav-item" role="tableau">
+            <li className="nav-item">
               <button
                 className="nav-link active"
                 id="tableau-tab"
@@ -72,7 +72,7 @@ const Blog = () => {
                 Tableau
               </button>
             </li>
-            <li className="nav-item" role="create">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 id="create-tab"
@@ -181,16 +181,16 @@ const Blog = () => {
                 <a href="/admin/">DashBoard</a>
               </li>
               <li className="list-group-item">
-                <a href="/admin/location">
-                  Location
-                </a>
+                <a href="/admin/location">Location</a>
               </li>
               <li className="list-group-item">
                 <a href="/admin/locker">Locker</a>
               </li>
               <li className="list-group-item active">
-                  <a href="/admin/blog"  className="link-light">Blog</a>
-                </li>
+                <a href="/admin/blog" className="link-light">
+                  Blog
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -52,7 +52,7 @@ const Locker = () => {
       <div className="row mt-5">
         <div className="col-sm-8">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="tableau">
+            <li class="nav-item">
               <button
                 class="nav-link active"
                 id="tableau-tab"
@@ -163,8 +163,8 @@ const Locker = () => {
                 </a>
               </li>
               <li className="list-group-item">
-                  <a href="/admin/blog">Blog</a>
-                </li>
+                <a href="/admin/blog">Blog</a>
+              </li>
             </ul>
           </div>
         </div>

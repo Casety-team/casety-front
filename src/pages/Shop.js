@@ -11,12 +11,9 @@ const Shop = () => {
   const [myLocation, setMyLocation] = useState("");
   const [lockerType, setLockerType] = useState([]);
   const [myLockerType, setMyLockerType] = useState("");
-  const [locker, setLocker] = useState([]);
   const [dateDepot, setMyDateDepot] = useState("");
   const [dateRetrait, setMyDateRetrait] = useState("");
-  const [message, setMessage] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  
+
   useEffect(() => {
     ShopService.getAllLocations().then(
       (response) => {
@@ -50,19 +47,7 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    ShopService.getAllLockers().then(
-      (response) => {
-        setLocker(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setLocker(_content);
-      }
-    );
+    ShopService.getAllLockers();
   }, []);
 
   const createReserver = (e) => {
@@ -81,15 +66,11 @@ const Shop = () => {
         }
       },
       (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+        console.log(
+          error.response && error.response.data && error.response.data.message
+        ) ||
           error.message ||
           error.toString();
-
-        setMessage(resMessage);
-        setSuccessful(false);
       }
     );
   };
@@ -114,7 +95,9 @@ const Shop = () => {
                       value={myLocation}
                       onChange={(item) => setMyLocation(item.target.value)}
                     >
-                      <option value="default" selected>Lieu</option>
+                      <option value="default" selected>
+                        Lieu
+                      </option>
                       {location.map((item) => (
                         <option key={item.id} value={item.id}>
                           {item.name}
@@ -129,7 +112,9 @@ const Shop = () => {
                       value={myLockerType}
                       onChange={(item) => setMyLockerType(item.target.value)}
                     >
-                      <option value="default" selected>Types de casier</option>
+                      <option value="default" selected>
+                        Types de casier
+                      </option>
                       {lockerType.map((item) => {
                         return (
                           <option key={item.id} value={item.id}>

@@ -52,7 +52,7 @@ const Location = () => {
       <div className="row mt-5">
         <div className="col-sm-8">
           <ul className="nav nav-tabs" id="myTab" role="tablist">
-            <li className="nav-item" role="tableau">
+            <li className="nav-item">
               <button
                 className="nav-link active"
                 id="tableau-tab"
@@ -66,7 +66,7 @@ const Location = () => {
                 Tableau
               </button>
             </li>
-            <li className="nav-item" role="create">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 id="create-tab"
@@ -163,8 +163,8 @@ const Location = () => {
                 <a href="/admin/locker">Locker</a>
               </li>
               <li className="list-group-item">
-                  <a href="/admin/blog">Blog</a>
-                </li>
+                <a href="/admin/blog">Blog</a>
+              </li>
             </ul>
           </div>
         </div>

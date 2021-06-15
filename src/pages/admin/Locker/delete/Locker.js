@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { getLocation } from "../../../../services/location.service";
 
 const DeleteLocker = ({ nameLocker, locationId }) => {
   const [getName, setGetName] = useState();
 
-  useEffect(() => {
-    getLocation(locationId).then((item) => setGetName(item.data.name));
-  }, []);
+  getLocation(locationId).then((item) => setGetName(item.data.name));
 
   return (
     <div>
