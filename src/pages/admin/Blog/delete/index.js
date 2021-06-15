@@ -35,7 +35,11 @@ const DeleteBlog = () => {
 
   const handleUpdateForm = () => {
     delete_new_article(getIdArticle).then(() => {
-      console.log("success");
+      alert("Article à bien était Supprimé !");
+      setTitle("");
+      setText("");
+      setPicture_url("");
+      setDescription("");
     });
   };
 
@@ -72,7 +76,7 @@ const DeleteBlog = () => {
           <div>
             <h6>Article</h6>
             <hr />
-            {text}
+            <p dangerouslySetInnerHTML={{ __html: text }} />
           </div>
           <div className="row mt-3">
             <div className="col-sm-6">{getCategorie.name}</div>

@@ -33,7 +33,12 @@ const TableauBlog = () => {
             <th scope="row">{item.id}</th>
             <td>{item.title}</td>
             <td>{item.description.substring(0, 50)}...</td>
-            <td>{item.text.substring(0, 50)}...</td>
+            <td>
+              <span
+                dangerouslySetInnerHTML={{ __html: item.text.substring(0, 50) }}
+              />
+              ...
+            </td>
             {/* <td>
               <button
                 type="button"

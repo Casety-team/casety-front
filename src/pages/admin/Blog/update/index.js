@@ -39,7 +39,12 @@ const UpdateBlog = () => {
       picture_url,
       categorieId
     ).then(() => {
-      console.log("success");
+      alert("Article à bien était mis à jour !");
+      getIdArticle(0);
+      setTitle("");
+      setText("");
+      setPicture_url("");
+      setDescription("");
     });
   };
 

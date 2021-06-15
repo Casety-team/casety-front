@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 import {
@@ -7,8 +7,6 @@ import {
 } from "../../../../services/blog.service";
 
 const CreateBlog = () => {
-  const editorRef = useRef(null);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [text, setText] = useState("");
@@ -27,7 +25,11 @@ const CreateBlog = () => {
   const handleAddForm = () => {
     add_new_article(title, description, text, picture_url, categorieId).then(
       () => {
-        console.log("success");
+        alert("Article à bien était ajouté !");
+        setTitle("");
+        setText("");
+        setPicture_url("");
+        setDescription("");
       }
     );
   };
@@ -82,7 +84,7 @@ const CreateBlog = () => {
         </div>
         <div className="mt-3">
           <Editor
-            initialValue="<p>Initial content</p>"
+            initialValue=""
             init={{
               height: 500,
               menubar: false,
@@ -93,9 +95,7 @@ const CreateBlog = () => {
                 "insertdatetime media table paste wordcount",
               ],
               toolbar:
-                "undo redo | formatselect | bold italic | \
-                alignleft aligncenter alignright | \
-                bullist numlist outdent indent | help",
+                "undo redo | formatselect | bold italic |  alignleft aligncenter alignright |  bullist numlist outdent indent | help",
             }}
             onChange={handleEditorChange}
           />
@@ -105,7 +105,7 @@ const CreateBlog = () => {
           onClick={handleAddForm}
           className="mt-3 w-50 container btn btn-success"
         >
-          Créer un nouvelle article
+          Ajouter
         </button>
       </div>
     </div>
