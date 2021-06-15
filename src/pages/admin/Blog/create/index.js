@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 import {
   add_new_article,
@@ -6,6 +7,8 @@ import {
 } from "../../../../services/blog.service";
 
 const CreateBlog = () => {
+  const editorRef = useRef(null);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [text, setText] = useState("");
@@ -16,6 +19,10 @@ const CreateBlog = () => {
   useEffect(() => {
     getAllCategorie().then((item) => setGetAll(item.data));
   }, []);
+
+  const handleEditorChange = (e) => {
+    setText(e.target.getContent());
+  };
 
   const handleAddForm = () => {
     add_new_article(title, description, text, picture_url, categorieId).then(
@@ -49,16 +56,7 @@ const CreateBlog = () => {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-sm-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Contenu de l'article"
-              value={text}
-              onChange={(item) => setText(item.target.value)}
-            />
-          </div>
-          <div className="col-sm-6">
+          <div className="col-sm">
             <input
               type="text"
               className="form-control"
@@ -68,7 +66,6 @@ const CreateBlog = () => {
             />
           </div>
         </div>
-
         <div className="col-sm-12 mt-3">
           <select
             className="form-select"
@@ -83,9 +80,29 @@ const CreateBlog = () => {
             })}
           </select>
         </div>
+        <div className="mt-3">
+          <Editor
+            initialValue="<p>Initial content</p>"
+            init={{
+              height: 500,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image",
+                "charmap print preview anchor help",
+                "searchreplace visualblocks code",
+                "insertdatetime media table paste wordcount",
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help",
+            }}
+            onChange={handleEditorChange}
+          />
+        </div>
         <button
           type="button"
-          onClick={() => handleAddForm()}
+          onClick={handleAddForm}
           className="mt-3 w-50 container btn btn-success"
         >
           Créer un nouvelle article

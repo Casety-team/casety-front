@@ -50,7 +50,7 @@ const Articles = () => {
             />
             <h3 className="blog-post-meta mt-5">Article</h3>
             <hr />
-            <p>{data.text}</p>
+            <p dangerouslySetInnerHTML={{ __html: data.text }} />
           </article>
         </div>
 
