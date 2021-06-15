@@ -22,7 +22,7 @@ const Gallery = () => {
               <div className="col p-4 d-flex flex-column position-static">
                 <h3 className="mb-0">{item.title}</h3>
                 <div className="mb-1 text-muted">
-                  posté le {moment(item.createdAt).format("MM-DD-YYYY")}
+                  posté le {moment(item.createdAt).format("DD-MM-YYYY")}
                 </div>
                 <p className="card-text mb-auto">{item.description}</p>
                 <a href={`/blog/article/${item.id}`} className="stretched-link">
