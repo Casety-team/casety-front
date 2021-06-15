@@ -30,6 +30,7 @@ const CreateBlog = () => {
         setText("");
         setPicture_url("");
         setDescription("");
+        setCategorieId("");
       }
     );
   };

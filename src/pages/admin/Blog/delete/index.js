@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   getAllArticle,
   getSingleCategorie,
@@ -40,6 +39,8 @@ const DeleteBlog = () => {
       setText("");
       setPicture_url("");
       setDescription("");
+      setCategorieId("");
+      setGetIdArticle(0);
     });
   };
 

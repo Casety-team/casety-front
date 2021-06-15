@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 import {
   getAllArticle,
@@ -29,6 +30,10 @@ const UpdateBlog = () => {
       setCategorieId(item.data.categorieId);
     });
   }, [getIdArticle]);
+
+  const handleEditorChange = (e) => {
+    setText(e.target.getContent());
+  };
 
   const handleUpdateForm = () => {
     update_new_article(
@@ -87,12 +92,21 @@ const UpdateBlog = () => {
           </div>
           <div className="row mt-3">
             <div className="col-sm-6">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Contenu de l'article"
-                value={text}
-                onChange={(item) => setText(item.target.value)}
+              <Editor
+                initialValue={text}
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist autolink lists link image",
+                    "charmap print preview anchor help",
+                    "searchreplace visualblocks code",
+                    "insertdatetime media table paste wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | formatselect | bold italic |  alignleft aligncenter alignright |  bullist numlist outdent indent | help",
+                }}
+                onChange={handleEditorChange}
               />
             </div>
             <div className="col-sm-6">
