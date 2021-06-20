@@ -4,6 +4,7 @@ import kelly from "./pictures/users/kelly.jpg";
 import pierre from "./pictures/users/pierre.jpg";
 import sarah from "./pictures/users/sarah.png";
 import audrey from "./pictures/users/audrey.jpg";
+import eleonor from "./pictures/users/eleonor.jpg";
 
 const Teams = () => {
   return (
@@ -46,7 +47,7 @@ const Teams = () => {
               <img
                 alt="team"
                 className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                src="https://dummyimage.com/88x88/edf2f7/a5afbd"
+                src={eleonor}
               />
               <div className="flex-grow">
                 <h2 className="text-gray-900 title-font font-medium">
