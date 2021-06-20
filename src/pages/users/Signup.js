@@ -236,7 +236,7 @@ const Signup = (props) => {
                         Mot de passe
                       </label>
                       <input
-                        type="text"
+                        type="password"
                         name="password"
                         id="password"
                         autoComplete="password"

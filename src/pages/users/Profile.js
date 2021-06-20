@@ -89,13 +89,13 @@ const Profile = () => {
           </h2>
           <h2 className="text-xs text-center mt-3 text-blue-500 tracking-widest font-medium title-font mb-1">
             Vous êtes un{" "}
-            {currentUser.roles ? (
-              <span className="text-red-500">Administrateur</span>
-            ) : (
-              currentUser.roles.map((role, index) => {
-                return <span>{role.substr(5).toLowerCase()} </span>;
-              })
-            )}
+            {currentUser.roles.map((role, index) => {
+              return role.substr(5).toLowerCase() === "admin" ? (
+                <span className="text-red-500">Administrateur</span>
+              ) : (
+                <span>{role.substr(5).toLowerCase()} </span>
+              );
+            })}
           </h2>
 
           <div className="mt-4 grid grid-cols-6 gap-6">
@@ -395,7 +395,7 @@ const Profile = () => {
                         "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       }
                     >
-                      Modifier mon profile
+                      Modifier mon profil
                     </button>
                   </div>
                 )}
