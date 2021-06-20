@@ -91,9 +91,9 @@ const Profile = () => {
             Vous êtes un{" "}
             {currentUser.roles.map((role, index) => {
               return role.substr(5).toLowerCase() === "admin" ? (
-                <span className="text-red-500">Administrateur</span>
+                <span className="text-red-500">administrateur</span>
               ) : (
-                <span>{role.substr(5).toLowerCase()} </span>
+                <span className="text-red-500">utilisateur</span>
               );
             })}
           </h2>
