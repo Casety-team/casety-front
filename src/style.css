@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:400,500&display=swap");
+
+:root {
+  /*
+    * Typography
+    * ======================================================================== */
+
+  --font-family-base: "Work Sans", sans-serif;
+
+  /*
+    * Colors
+    * ======================================================================== */
+  --text-primary: #007bff;
+  --text-secondary: #6c757d;
+  --text-success: #28a745;
+  --text-danger: #dc3545;
+  --text-warning: #ffc107;
+  --text-info: #17a2b8;
+  --text-light: #f8f9fa;
+  --text-dark: #343a40;
+  --text-muted: #6c757d;
+  --text-white: #ffffff;
+
+  --bg-primary: #007bff;
+  --bg-secondary: #6c757d;
+  --bg-success: #28a745;
+  --bg-danger: #dc3545;
+  --bg-warning: #ffc107;
+  --bg-info: #17a2b8;
+  --bg-light: #f8f9fa;
+  --bg-dark: #343a40;
+  --bg-white: #ffffff;
+
+  /*
+    * Media queries breakpoints
+    * ======================================================================== */
+
+  --screen-xs-min: 480px; /* Extra small screen / phone */
+  --screen-sm-min: 768px; /* Small screen / tablet */
+  --screen-md-min: 992px; /* Medium screen / desktop */
+  --screen-lg-min: 1200px; /* Large screen / wide desktop */
+}
+
+.flex-equal > * {
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+}

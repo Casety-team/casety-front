@@ -6,7 +6,7 @@ import AuthService from "../services/auth.service";
 import Login from "./users/Signin";
 import Register from "./users/Signup";
 
-import Home from "./Home";
+import Home from "./home/";
 import Blog from "./blog";
 import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
@@ -21,6 +21,8 @@ import BoardAdmin from "./admin/BoardAdmin";
 import Location from "./admin/Location";
 import Locker from "./admin/Locker";
 import Blogs from "./admin/Blog";
+
+import logo from "../assets/pictures/white_logo.png";
 
 const Router = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -43,93 +45,116 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to={"/"}>
-            Casety
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+      <header class="fixed w-full z-10 top-0 bg-white text-gray-700 body-font border-b border-gray-200">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <Link
+            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+            to={"/"}
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="navbar-nav me-auto mb-2 mb-lg-0">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link active" to={"/home"}>
-                    Accueil
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/shopview"}>
-                    Nos casiers
-                  </Link>
-                </li>
-                {showUserBoard && (
-                  <li className="nav-item">
-                    <Link className="nav-link" to={"/shop"}>
-                      Boutique
-                    </Link>
-                  </li>
-                )}
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/blog"}>
-                    Blog
-                  </Link>
-                </li>
-              </ul>
+            <div className="w-10 h-10 text-white bg-blue-500 rounded-full">
+              <img
+                src={logo}
+                alt="logo"
+                width="20"
+                height="20"
+                className="ml-2.5 mt-2"
+              />
             </div>
-            <div className="d-flex">
-              <ul className="navbar-nav">
-                {showAdminBoard && (
-                  <li className="nav-item">
-                    <Link className="nav-link" to={"/admin"}>
-                      Dashboard
-                    </Link>
-                  </li>
-                )}
-                {showUserBoard && (
-                  <li className="nav-item">
-                    <Link className="nav-link" to={"/profile"}>
-                      Profil
-                    </Link>
-                  </li>
-                )}
-                {currentUser ? (
-                    <li className="nav-item">
-                      <a href="/login" className="nav-link" onClick={logOut}>
-                        Déconnexion
-                      </a>
-                    </li>
-                ) : (
-                  <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to={"/login"}>
-                        Connexion
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to={"/register"}>
-                        Inscription
-                      </Link>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-          </div>
+
+            <span className="ml-3 text-xl">CASETY</span>
+          </Link>
+          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <Link className="mr-5 hover:text-gray-900" to={"/home"}>
+              Accueil
+            </Link>
+            <Link className="mr-5 hover:text-gray-900" to={"/blog"}>
+              Blog
+            </Link>
+            {showUserBoard && (
+              <Link className="mr-5 hover:text-gray-900" to={"/shop"}>
+                Boutique
+              </Link>
+            )}
+            {showAdminBoard && (
+              <Link
+                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                to={"/admin"}
+              >
+                Dashboard
+              </Link>
+            )}
+            {showUserBoard && (
+              <Link
+                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                to={"/profile"}
+              >
+                Profile
+              </Link>
+            )}
+            {currentUser ? (
+              <Link
+                onClick={logOut}
+                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                to={"/login"}
+              >
+                Déconnexion
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-4 h-4 ml-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </Link>
+            ) : (
+              <>
+                <Link
+                  className="inline-flex text-white bg-blue-500 items-center bg-blue-200 border-0 py-1 px-3 focus:outline-none hover:bg-blue-300 rounded text-base mt-4 md:mt-0"
+                  to={"/register"}
+                >
+                  Inscription
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    className="w-4 h-4 ml-1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </Link>
+                <Link
+                  className="ml-4 inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                  to={"/login"}
+                >
+                  Connexion
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    className="w-4 h-4 ml-1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </Link>
+              </>
+            )}
+          </nav>
         </div>
-      </nav>
+      </header>
+
       <Switch>
-      <Route exact path={["/", "/home"]} component={Home} />
-      <Route exact path="/shopview" component={ShopView} />
+        <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path="/shopview" component={ShopView} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
         <Route exact path="/terms" component={Terms} />
@@ -142,25 +167,27 @@ const Router = () => {
           path="stripe/charge/error/?sc_checkout=cancel"
           component={Error}
         />
-        {currentUser ? showAdminBoard ? (
-          <>
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/shop" component={Shop} />
-            <Route exact path={"/admin"} component={BoardAdmin} />
-            <Route exact path="/admin/location" component={Location} />
-            <Route exact path="/admin/locker" component={Locker} />
-            <Route exact path="/admin/blog" component={Blogs} />
-          </>
-        ) : (        
+        {currentUser ? (
+          showAdminBoard ? (
+            <>
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/shop" component={Shop} />
+              <Route exact path={"/admin"} component={BoardAdmin} />
+              <Route exact path="/admin/location" component={Location} />
+              <Route exact path="/admin/locker" component={Locker} />
+              <Route exact path="/admin/blog" component={Blogs} />
+            </>
+          ) : (
             <>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/shop" component={Shop} />
             </>
-          ) : (
-            <>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-            </>
+          )
+        ) : (
+          <>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </>
         )}
       </Switch>
     </BrowserRouter>
