@@ -32,6 +32,12 @@ const Blog = () => {
 
   return (
     <div className="mt-5 container">
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous"
+      />
       <ul className="nav nav-tabs" style={{ marginTop: 100 }}>
         <li className="nav-item">
           <a className="nav-link" href="/admin/">
@@ -148,50 +154,6 @@ const Blog = () => {
             >
               <DeleteBlog />
             </div>
-          </div>
-        </div>
-        <div className="col-sm-4 container mt-5">
-          <div className="text-center mb-5">
-            <img src={logo} alt="casety logo" />
-          </div>
-          <div className="card mb-3">
-            <div className="card-header">Créer une catégorie</div>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nom de la catégorie"
-                value={nameCat}
-                onChange={(item) => setNameCat(item.target.value)}
-              />
-              <button
-                class="btn btn-success"
-                type="button"
-                id="inputGroupFileAddon04"
-                onClick={() => handleAddFormCat()}
-              >
-                Créer
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-header">Raccourcis</div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">
-                <a href="/admin/">DashBoard</a>
-              </li>
-              <li className="list-group-item">
-                <a href="/admin/location">Location</a>
-              </li>
-              <li className="list-group-item">
-                <a href="/admin/locker">Locker</a>
-              </li>
-              <li className="list-group-item active">
-                <a href="/admin/blog" className="link-light">
-                  Blog
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

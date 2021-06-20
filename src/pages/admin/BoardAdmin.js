@@ -1,68 +1,97 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
+import moment from "moment";
 
-import logo from "../../assets/pictures/dark_logo.png";
+import Navbar from "./Navbar/";
+import Users from "./Users/";
+import { Line } from "react-chartjs-2";
 
 const BoardAdmin = () => {
+  const [allUser, setAllUser] = useState([]);
+  const [date, setDate] = useState([]);
+  const [nbUser, setNbUser] = useState([]);
+
   useEffect(() => {
     UserService.getAdminBoard();
+    UserService.getAllUser().then((e) => {
+      setAllUser(e.data);
+    });
   }, []);
+
+  useEffect(() => {
+    var test = [];
+
+    allUser.map((e, i) => {
+      return test.push(moment(e.createdAt).format("DD-MM-YYYY"));
+    });
+
+    setDate(Array.from(new Set(test)));
+
+    test.sort();
+    var current = null;
+    var cnt = 0;
+    var nb = [];
+
+    for (var i = 0; i < test.length; i++) {
+      if (test[i] !== current) {
+        if (cnt > 0) {
+          nb.push(cnt);
+        }
+        current = test[i];
+        cnt = 1;
+      } else {
+        cnt++;
+      }
+    }
+    if (cnt > 0) {
+      nb.push(cnt);
+    }
+
+    setNbUser(nb);
+  }, [allUser]);
+
+  const data = {
+    labels: date,
+    datasets: [
+      {
+        label: "Nombres d'inscriptions par jours",
+        data: nbUser,
+        fill: false,
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgba(255, 99, 132, 0.2)",
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
   return (
-    <div className="mt-5 container">
-      <div className="pt-3 pb-2 mb-3 border-bottom">
-        <h1 className="h2">Dashboard</h1>
-      </div>
-      <ul className="nav nav-tabs" style={{ marginTop: 100 }}>
-        <li className="nav-item">
-          <a className="nav-link active" href="/admin/">
-            DashBoard
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/admin/location">
-            Location
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/admin/locker">
-            Locker
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/admin/blog">
-            Blog
-          </a>
-        </li>
-      </ul>
-      <main className="container">
-        <div className="row container mt-5">
-          <div className="col-sm-8"></div>
-          <div className="col-sm-4 container mt-5">
-            <div class="text-center mb-5">
-              <img src={logo} alt="casety logo" />
+    <div class="font-family-karla flex">
+      <Navbar />
+      <div class="w-full overflow-x-hidden border-t flex flex-col">
+        <main class="w-full flex-grow p-6">
+          <h1 class="text-3xl text-black pb-6">Dashboard</h1>
+          <div className="header"></div>
+          <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6 sm:col-span-3">
+              <Users />
             </div>
-            <div className="card ">
-              <div class="card-header">Raccourcis</div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item active">
-                  <a href="/admin/" className="link-light">
-                    DashBoard
-                  </a>
-                </li>
-                <li className="list-group-item ">
-                  <a href="/admin/location">Location</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/admin/locker">Locker</a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/admin/blog">Blog</a>
-                </li>
-              </ul>
+            <div className="col-span-6 sm:col-span-3">
+              <Line data={data} options={options} />
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };

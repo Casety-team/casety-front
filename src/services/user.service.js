@@ -19,6 +19,10 @@ const getAdminBoard = () => {
   return axios.get(API_URL + "admin", { headers: authHeader() });
 };
 
+const getAllUser = () => {
+  return axios.get(API_URL + "user/all", { headers: authHeader() });
+};
+
 const getUser = (id) => {
   return axios.get(API_URL + "user/" + id, { headers: authHeader() });
 };
@@ -56,6 +60,7 @@ const deleteUser = (id) => {
 const exportedObject = {
   getPublicContent,
   getUser,
+  getAllUser,
   userUpdate,
   getUserBoard,
   deleteUser,
