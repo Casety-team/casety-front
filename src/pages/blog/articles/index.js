@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import {
   getSingleArticle,
-  getAllArticle,
+  // getAllArticle,
 } from "../../../services/blog.service";
 import moment from "moment";
-
-import "../blog.css";
+import arrow from "../../home/pictures/arrow-back.svg";
 
 const Articles = () => {
   const [data, setData] = useState([]);
@@ -16,70 +15,65 @@ const Articles = () => {
     })();
   }, [getURL]);
 
-  const [dataAllArticle, setDataAllArticle] = useState([]);
-  useEffect(() => {
-    (async () => {
-      await getAllArticle().then((item) =>
-        setDataAllArticle(item.data.map((item) => item))
-      );
-    })();
-  }, []);
+  // const [dataAllArticle, setDataAllArticle] = useState([]);
+  // useEffect(() => {
+  //   (async () => {
+  //     await getAllArticle().then((item) =>
+  //       setDataAllArticle(item.data.map((item) => item))
+  //     );
+  //   })();
+  // }, []);
 
   return (
-    <main className="container" style={{ marginTop: 100 }}>
-      <div className="row">
-        <div className="col-md-8">
-          <h3 className="pb-4 mb-4 fst-italic border-bottom">Casety - Blog</h3>
-          <article className="blog-post">
-            <h2 className="blog-post-title">{data.title}</h2>
-            <p className="blog-post-meta">
-              {moment(data.createdAt).format("DD-MM-YYYY")} by{" "}
-              <span className="font-weight-bold">Casety</span>
-            </p>
-            <h4 className="blog-post-meta">Introduction</h4>
-            <p>{data.description}</p>
-            <hr />
-            <img
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: "21px 21px 0 0",
-              }}
-              src={"/pictures/" + data.picture_url}
-              alt="location"
-            />
-            <h3 className="blog-post-meta mt-5">Article</h3>
-            <hr />
-            <p dangerouslySetInnerHTML={{ __html: data.text }} />
-          </article>
+    <div style={{ marginTop: 80 }}>
+      <section class="flex flex-col md:flex-row">
+        <div class="hidden fixed h-full bg-white lg:block md:w-1/3 lg:w-1/1 ">
+          <img
+            src={"/pictures/" + data.picture_url}
+            alt=""
+            class="object-cover h-full"
+          />
         </div>
-
-        <div className="col-md-4">
-          <div className="p-4 mb-3 bg-light rounded">
-            <h4 className="fst-italic">A propos</h4>
-            <p className="mb-0">
-              Ne vous souciez plus de vos affaires pendant la journée, et
-              profitez pleinement de la vie Parisienne, grâce aux casiers
-              autonomes Casety ! Les Casety sont à votre disposition pour
-              déposer toutes vos affaires, et sont disponibles 7/24 !
-            </p>
-          </div>
-
-          <div className="p-4">
-            <h4 className="fst-italic">Autres articles</h4>
-            <ol className="list-unstyled mb-0">
-              {dataAllArticle.map((item) => {
-                return (
-                  <li>
-                    <a href={`${item.id}`}>{item.title}</a>
-                  </li>
-                );
-              })}
-            </ol>
+        <div class="bg-white">
+          <div style={{ marginLeft: 600, marginTop: 50 }}>
+            <div class="container mx-auto px-32">
+              <a
+                href="/blog"
+                className="text-xs text-blue-500 tracking-widest font-medium title-font mb-1"
+              >
+                <div className="flex">
+                  <div>
+                    <img src={arrow} alt="arrow" />
+                  </div>
+                  <div className="ml-3">Retour vers les articles</div>
+                </div>
+              </a>
+              <div class="flex flex-col mx-12 mb-2 lg:w-3/4 ">
+                <p class="my-4 text-lg leading-snug tracking-tight text-blue-400 lg:w-2/3">
+                  {moment(data.createdAt).format("DD-MM-YYYY")}
+                </p>
+                <h1 class="mb-2 text-3xl font-black tracking-tighter text-black lg:text-5xl md:text-4xl">
+                  {data.title}
+                </h1>
+                <p class="mt-4 text-lg leading-snug tracking-tight text-blueGray-400">
+                  {data.description}
+                </p>
+              </div>
+            </div>
+            <div class="container px-5 mx-auto">
+              <div class="flex flex-col lg:flex-row">
+                <div class="w-full px-4 mx-auto mt-12 text-lg leading-snug tracking-tight text-blueGray-400 lg:px-0 lg:w-3/4">
+                  <p
+                    class="pb-6"
+                    dangerouslySetInnerHTML={{ __html: data.text }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </section>
+    </div>
   );
 };
 

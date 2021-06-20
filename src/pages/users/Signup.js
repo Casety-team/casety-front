@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { isEmail } from "validator";
 
+import { LockClosedIcon } from "@heroicons/react/solid";
 import AuthService from "../../services/auth.service";
 
 const required = (value) => {
@@ -79,13 +80,13 @@ const Signup = (props) => {
   const [terms, setTerms] = useState(false);
   const [newsletters, setNewsletters] = useState(false);
 
-  const [successful, setSuccessful] = useState(false);
+  //  const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage("");
-    setSuccessful(false);
+    //setSuccessful(false);
 
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -111,7 +112,7 @@ const Signup = (props) => {
       ).then(
         (response) => {
           setMessage(response.data.message);
-          setSuccessful(true);
+          //setSuccessful(true);
           window.location.replace("/login");
         },
         (error) => {
@@ -123,7 +124,7 @@ const Signup = (props) => {
             error.toString();
 
           setMessage(resMessage);
-          setSuccessful(false);
+          //setSuccessful(false);
         }
       );
     }
@@ -131,150 +132,240 @@ const Signup = (props) => {
 
   return (
     <>
-      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-        <div class="row align-items-center g-lg-5 py-5">
-          <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">Inscrivez-vous</h1>
-            <p class="col-lg-10 fs-4">
-              Déposez vos bagages dans les commerces / hotels et profitez de
-              votre journée !
-            </p>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <img
+              className="mx-auto h-12 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg"
+              alt="Workflow"
+            />
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Inscrivez-vous chez CASETY
+            </h2>
           </div>
-          <div class="col-md-10 mx-auto col-lg-5">
-            {!successful && (
-              <form class="p-4 p-md-5 border rounded-3 bg-light">
-                {message && (
-                  <div>
-                    <div
-                      style={{ marginTop: -25 }}
-                      className={
-                        successful
-                          ? "text-success mb-3 text-center"
-                          : "text-danger text-center mb-3"
-                      }
-                    >
-                      <b>{message}</b>
+          {message && (
+            <p className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+              {message}
+            </p>
+          )}
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            <form action="#" method="POST">
+              <div className="shadow overflow-hidden sm:rounded-md">
+                <div className="px-4 py-5 bg-white sm:p-6">
+                  <div className="grid grid-cols-6 gap-6">
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first_name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Prénom
+                      </label>
+                      <input
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        autoComplete="given-name"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={firstname}
+                        onChange={(e) => setFirstname(e.target.value)}
+                        validations={[required, vFirstname]}
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="last_name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Nom
+                      </label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        autoComplete="family-name"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={lastname}
+                        onChange={(e) => setLastname(e.target.value)}
+                        validations={[required, vLastname]}
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="email_address"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Adresse e-mail
+                      </label>
+                      <input
+                        type="text"
+                        name="email_address"
+                        id="email_address"
+                        autoComplete="email"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        validations={[required, vEmail]}
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Téléphone
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        autoComplete="phone"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        validations={[required, vPhone]}
+                      />
+                    </div>
+                    <div className="col-span-6">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Mot de passe
+                      </label>
+                      <input
+                        type="text"
+                        name="password"
+                        id="password"
+                        autoComplete="password"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        validations={[required, vpassword]}
+                      />
+                    </div>
+
+                    <div className="col-span-6">
+                      <label
+                        htmlFor="street_address"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Adresse de la rue
+                      </label>
+                      <input
+                        type="text"
+                        name="street_address"
+                        id="street_address"
+                        autoComplete="street-address"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={adress}
+                        onChange={(e) => setAdress(e.target.value)}
+                        validations={[required, vAdress]}
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="city"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Ville
+                      </label>
+                      <input
+                        type="text"
+                        name="city"
+                        id="city"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        validations={[required, vCity]}
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="postal_code"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Code postal
+                      </label>
+                      <input
+                        type="text"
+                        name="postal_code"
+                        id="postal_code"
+                        autoComplete="postal-code"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={zip}
+                        onChange={(e) => setZip(e.target.value)}
+                        validations={[required, vZip]}
+                      />
                     </div>
                   </div>
-                )}
-                <div className="row">
-                  <div class="col-sm-6 mb-3">
+                </div>
+                <div className="mt-3 px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <div className="flex items-center">
                     <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Prénom"
-                      value={firstname}
-                      onChange={(e) => setFirstname(e.target.value)}
-                      validations={[required, vFirstname]}
-                    />
-                  </div>
-                  <div class="col-sm-6 mb-3">
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Nom"
-                      value={lastname}
-                      onChange={(e) => setLastname(e.target.value)}
-                      validations={[required, vLastname]}
-                    />
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <input
-                    class="form-control"
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    validations={[required, vEmail]}
-                  />
-                </div>
-                <div class="mb-3">
-                  <input
-                    class="form-control"
-                    type="password"
-                    placeholder="Mot de passe"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    validations={[required, vpassword]}
-                  />
-                </div>
-                <div class="mb-3">
-                  <input
-                    class="form-control mb-3"
-                    type="text"
-                    placeholder="Adresse"
-                    value={adress}
-                    onChange={(e) => setAdress(e.target.value)}
-                    validations={[required, vAdress]}
-                  />
-                </div>
-                <div className="row">
-                  <div class="col-sm-6 mb-3">
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Ville"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      validations={[required, vCity]}
-                    />
-                  </div>
-                  <div class="col-sm-6 mb-3">
-                    <input
-                      class="form-control"
-                      type="number"
-                      placeholder="Code postale"
-                      value={zip}
-                      onChange={(e) => setZip(e.target.value)}
-                      validations={[required, vZip]}
-                    />
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <input
-                    class="form-control mb-3"
-                    type="tel"
-                    pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
-                    placeholder="Telephone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    validations={[required, vPhone]}
-                  />
-                </div>
-                <div class="checkbox mb-3">
-                  <label>
-                    <input
-                      name="newsletters"
+                      id="push_nothing"
+                      name="push_notifications"
                       type="checkbox"
+                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                       checked={newsletters}
                       onChange={(e) => setNewsletters(!newsletters)}
-                    />{" "}
-                    Inscription à la newsletter
-                  </label>
-                  <label>
+                    />
+                    <label
+                      htmlFor="push_nothing"
+                      className="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Inscription à la newsletter
+                    </label>
+                  </div>
+
+                  <div className="mb-5 mt-2 flex items-center">
                     <input
-                      name="terms"
+                      id="push_terms"
+                      name="push_terms"
                       type="checkbox"
+                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                       checked={terms}
                       onChange={(e) => setTerms(!terms)}
-                    />{" "}
-                    <a href="/terms" target="_blank">
-                      {" "}
-                      Conditions genéral d'utilisation
-                    </a>
-                  </label>
+                    />
+                    <label
+                      htmlFor="push_terms"
+                      className="ml-3 block text-sm font-medium text-gray-300 underline"
+                    >
+                      <a href="/terms" target="_blank">
+                        Conditions genéral d'utilisation
+                      </a>
+                    </label>
+                  </div>
+
+                  <button
+                    //onClick={(e) => handleLogin(e)}
+                    type="submit"
+                    className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                      terms
+                        ? "bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        : "bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    }`}
+                    onClick={(e) => handleSubmit(e)}
+                    disabled={!terms}
+                  >
+                    <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                      <LockClosedIcon
+                        className={`h-5 w-5 ${
+                          terms
+                            ? "text-blue-500 group-hover:text-blue-400"
+                            : "text-gray-500 group-hover:text-gray-400"
+                        } `}
+                        aria-hidden="true"
+                      />
+                    </span>
+                    S'inscrire
+                  </button>
                 </div>
-                <button
-                  class="w-100 btn btn-lg btn-primary"
-                  onClick={(e) => handleSubmit(e)}
-                  type="submit"
-                  disabled={!terms}
-                >
-                  Inscription
-                </button>
-              </form>
-            )}
+              </div>
+            </form>
           </div>
         </div>
       </div>
