@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-
 import AuthService from "../services/auth.service";
-
-import Login from "./users/Signin";
-import Register from "./users/Signup";
 
 import Home from "./home/";
 import Blog from "./blog";
-import Article from "./blog/articles/index.js";
 import Shop from "./Shop";
-import ShopView from "./ShopView";
 import Terms from "./Terms";
+
+import Article from "./blog/articles/index.js";
+
 import Success from "./stripe/success";
 import Error from "./stripe/error";
 
+import Login from "./users/Signin";
+import Register from "./users/Signup";
 import Profile from "./users/Profile";
+import Basket from "./users/Basket";
 
 import BoardAdmin from "./admin/BoardAdmin";
 import Location from "./admin/Location";
@@ -41,6 +41,7 @@ const Router = () => {
 
   const logOut = () => {
     AuthService.logout();
+    window.location.replace("login");
   };
 
   return (
@@ -77,7 +78,7 @@ const Router = () => {
             )}
             {showAdminBoard && (
               <Link
-                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                className="inline-flex items-center bg-blue-200 border-0 py-1 px-3 focus:outline-none hover:bg-blue-300 rounded text-base mt-4 md:mt-0"
                 to={"/admin"}
               >
                 Dashboard
@@ -85,7 +86,7 @@ const Router = () => {
             )}
             {showUserBoard && (
               <Link
-                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                className="ml-4 inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
                 to={"/profile"}
               >
                 Profile
@@ -94,7 +95,7 @@ const Router = () => {
             {currentUser ? (
               <Link
                 onClick={logOut}
-                className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+                className="ml-4 inline-flex items-center bg-red-200 border-0 py-1 px-3 focus:outline-none hover:bg-red-300 rounded text-base mt-4 md:mt-0"
                 to={"/login"}
               >
                 Déconnexion
@@ -154,7 +155,6 @@ const Router = () => {
 
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
-        <Route exact path="/shopview" component={ShopView} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
         <Route exact path="/terms" component={Terms} />
@@ -172,6 +172,7 @@ const Router = () => {
             <>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/shop" component={Shop} />
+              <Route exact path="/reservers" component={Basket} />
               <Route exact path={"/admin"} component={BoardAdmin} />
               <Route exact path="/admin/location" component={Location} />
               <Route exact path="/admin/locker" component={Locker} />
@@ -180,6 +181,7 @@ const Router = () => {
           ) : (
             <>
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/reservers" component={Basket} />
               <Route exact path="/shop" component={Shop} />
             </>
           )

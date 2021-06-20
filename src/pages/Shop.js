@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AuthService from "../services/auth.service";
 import ShopService from "../services/shop.service";
 import moment from "moment";
+import { ShoppingCartIcon } from "@heroicons/react/solid";
 
 const Shop = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -77,97 +78,149 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container-fluid col-xl-10 mt-5 col-xxl-8 px-4 py-5">
-        <h1 className="display-4 fw-bold lh-1 text-center mb-3">
-          Commander un Casier
-        </h1>
-        <div className="row align-items-center g-lg-5">
-          <div className="col-md-8 mx-auto col-lg-8">
-            {!currentUser ? (
-              <a href="/login">Go login</a>
-            ) : (
-              <form className="mt-5 container" style={{ paddingTop: 30 }}>
-                <div className="row">
-                  <div className="col-sm-6 mb-3">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <ShoppingCartIcon
+              className={
+                "mx-auto h-12 w-auto text-blue-500 group-hover:text-blue-400"
+              }
+              aria-hidden="true"
+            />
+
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Louer un casier
+            </h2>
+          </div>
+
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            <div className="shadow overflow-hidden sm:rounded-md">
+              <div className="px-4 py-5 bg-white sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="location"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Selectionner un lieu
+                    </label>
                     <select
-                      className="form-select"
-                      aria-label="Lieux"
+                      id="location"
+                      name="location"
+                      autoComplete="location"
+                      className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       value={myLocation}
                       onChange={(item) => setMyLocation(item.target.value)}
                     >
-                      <option value="default" selected>
-                        Lieu
-                      </option>
                       {location.map((item) => (
                         <option key={item.id} value={item.id}>
-                          {item.name}
+                          {item.name +
+                            " (" +
+                            item.city +
+                            " " +
+                            item.zip_code +
+                            ")"}
                         </option>
                       ))}
                     </select>
                   </div>
-                  <div className="col-sm-6 mb-3">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="location"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Types de Casier
+                    </label>
                     <select
-                      className="form-select"
-                      aria-label="Lieux"
+                      id="location"
+                      name="location"
+                      autoComplete="location"
+                      className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       value={myLockerType}
                       onChange={(item) => setMyLockerType(item.target.value)}
                     >
-                      <option value="default" selected>
-                        Types de casier
-                      </option>
                       {lockerType.map((item) => {
                         return (
                           <option key={item.id} value={item.id}>
-                            {item.name}
+                            {item.name === "bikes"
+                              ? "Vélo"
+                              : item.name === "lockers"
+                              ? "Sac à dos"
+                              : "Valise"}
                           </option>
                         );
                       })}
                     </select>
                   </div>
+                  <div className="col-span-6 sm:col-span-3" />
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="date_depot"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Date de dépot
+                    </label>
+                    <input
+                      name="date_depot"
+                      id="date_depot"
+                      placeholder="date_depot"
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      type="datetime-local"
+                      min="2020-06-01T08:30"
+                      onChange={(item) => {
+                        setMyDateDepot(
+                          moment(item.target.value).format(
+                            "YYYY-MM-DD HH:mm:ss"
+                          )
+                        );
+                      }}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="date_retrait"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      date_retrait
+                    </label>
+                    <input
+                      name="date_retrait"
+                      id="date_retrait"
+                      placeholder="date_retrait"
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      type="datetime-local"
+                      min="2020-06-01T08:30"
+                      onChange={(item) => {
+                        setMyDateRetrait(
+                          moment(item.target.value).format(
+                            "YYYY-MM-DD HH:mm:ss"
+                          )
+                        );
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <input
-                    placeholder="Date de dépot"
-                    className="form-control"
-                    type="datetime-local"
-                    min="2020-06-01T08:30"
-                    onChange={(item) => {
-                      setMyDateDepot(
-                        moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
-                      );
-                    }}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    placeholder="Date de retrait"
-                    type="datetime-local"
-                    min="2020-06-01T08:30"
-                    onChange={(item) => {
-                      setMyDateRetrait(
-                        moment(item.target.value).format("YYYY-MM-DD HH:mm:ss")
-                      );
-                    }}
-                  />
-                </div>
+              </div>
+              <div className="mt-3 px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
-                  className="w-100 btn btn-lg btn-primary"
                   onClick={(e) => createReserver(e)}
                   type="submit"
+                  className={
+                    "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  }
                 >
-                  Commander
+                  <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <ShoppingCartIcon
+                      className={
+                        "h-5 w-5 text-blue-500 group-hover:text-blue-400"
+                      }
+                      aria-hidden="true"
+                    />
+                  </span>
+                  Payer
                 </button>
-              </form>
-            )}
-          </div>
-          <div className="col-lg-4 text-center text-lg-start">
-            <p className="col-lg-12 fs-6">
-              Below is an example form built entirely with Bootstrap’s form
-              controls. Each required form group has a validation state that can
-              be triggered by attempting to submit the form without completing
-              it.
-            </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

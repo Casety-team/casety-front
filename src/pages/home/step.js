@@ -1,3 +1,5 @@
+import { ShoppingCartIcon } from "@heroicons/react/solid";
+
 const StepbyStep = () => {
   return (
     <div className="text-gray-700 body-font border-t border-gray-200">
@@ -63,17 +65,10 @@ const StepbyStep = () => {
             <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
               <div className="flex items-center mb-3">
                 <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-6 h-6"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
+                  <ShoppingCartIcon
+                    className={"h-6 w-6 text-WHITE-500"}
+                    aria-hidden="true"
+                  />
                 </div>
                 <h2 className="text-gray-900 text-lg title-font font-medium">
                   Boutique dédiée
