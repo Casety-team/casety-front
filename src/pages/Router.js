@@ -9,8 +9,9 @@ import Terms from "./Terms";
 
 import Article from "./blog/articles/index.js";
 
-import Success from "./stripe/success";
-import Error from "./stripe/error";
+import Success from "./stripe/Success";
+import Error from "./stripe/Error";
+import NoMatch from "./404/";
 
 import Login from "./users/Signin";
 import Register from "./users/Signup";
@@ -158,31 +159,26 @@ const Router = () => {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/blog/article/:id" component={Article} />
         <Route exact path="/terms" component={Terms} />
-        <Route
-          path="stripe/charge/success/:token/?sc_checkout=success"
-          component={Success}
-        />
-        <Route
-          exact
-          path="stripe/charge/error/?sc_checkout=cancel"
-          component={Error}
-        />
         {currentUser ? (
           showAdminBoard ? (
             <>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/shop" component={Shop} />
               <Route exact path="/reservers" component={Basket} />
-              <Route exact path={"/admin"} component={BoardAdmin} />
+              <Route exact path="/admin" component={BoardAdmin} />
               <Route exact path="/admin/location" component={Location} />
               <Route exact path="/admin/locker" component={Locker} />
               <Route exact path="/admin/blog" component={Blogs} />
+              <Route path="/stripe/charge/success/:token" component={Success} />
+              <Route exact path="/stripe/charge/error" component={Error} />
             </>
           ) : (
             <>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/reservers" component={Basket} />
               <Route exact path="/shop" component={Shop} />
+              <Route path="/stripe/charge/success/:token" component={Success} />
+              <Route exact path="/stripe/charge/error" component={Error} />
             </>
           )
         ) : (

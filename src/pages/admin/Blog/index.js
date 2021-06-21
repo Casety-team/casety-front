@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+
 import UserService from "../../../services/user.service";
 import { add_new_categorie } from "../../../services/blog.service";
 
+import Navbar from "../Navbar";
 import TableauBlog from "./tableau";
 import CreateBlog from "./create";
 import UpdateBlog from "./update";
 import DeleteBlog from "./delete";
 
-import logo from "../../../assets/pictures/dark_logo.png";
-
 const Blog = () => {
   const [nameCat, setNameCat] = useState();
+  const [openTab, setOpenTab] = React.useState(1);
+  const color = "blue";
 
   useEffect(() => {
     UserService.getAdminBoard().then(
@@ -31,130 +33,127 @@ const Blog = () => {
   };
 
   return (
-    <div className="mt-5 container">
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-        crossorigin="anonymous"
-      />
-      <ul className="nav nav-tabs" style={{ marginTop: 100 }}>
-        <li className="nav-item">
-          <a className="nav-link" href="/admin/">
-            DashBoard
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/admin/location">
-            Location
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/admin/locker">
-            Locker
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/admin/blog">
-            Blog
-          </a>
-        </li>
-      </ul>
-
-      <div className="row mt-5">
-        <div className="col-sm-8">
-          <ul className="nav nav-tabs" id="myTab" role="tablist">
-            <li className="nav-item">
-              <button
-                className="nav-link active"
-                id="tableau-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#tableau"
-                type="button"
-                role="tab"
-                aria-controls="tableau"
-                aria-selected="true"
-              >
-                Tableau
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                className="nav-link"
-                id="create-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#create"
-                type="button"
-                role="tab"
-                aria-controls="create"
-                aria-selected="false"
-              >
-                Créer
-              </button>
-            </li>
-            <li className="nav-item" role="presentation">
-              <button
-                className="nav-link"
-                id="profile-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#profile"
-                type="button"
-                role="tab"
-                aria-controls="profile"
-                aria-selected="false"
-              >
-                Mettre à jour
-              </button>
-            </li>
-            <li className="nav-item" role="presentation">
-              <button
-                className="nav-link"
-                id="contact-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#contact"
-                type="button"
-                role="tab"
-                aria-controls="contact"
-                aria-selected="false"
-              >
-                Supprimer
-              </button>
-            </li>
-          </ul>
-          <div className="tab-content" id="myTabContent">
-            <div
-              className="tab-pane fade show active"
-              id="tableau"
-              role="tabpanel"
-              aria-labelledby="tableau-tab"
-            >
-              <TableauBlog />
+    <div style={{ marginTop: 80 }} className="bg-grey-500">
+      <div class="font-family-karla flex">
+        <Navbar value="blog" />
+        <div class="w-full overflow-x-hidden border-t flex flex-col">
+          <>
+            <div className="flex flex-wrap">
+              <div className="w-full">
+                <ul
+                  className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+                  role="tablist"
+                >
+                  <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                    <a
+                      className={
+                        "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                        (openTab === 1
+                          ? "text-white bg-" + color + "-600"
+                          : "text-" + color + "-600 bg-white")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(1);
+                      }}
+                      data-toggle="tab"
+                      href="#link1"
+                      role="tablist"
+                    >
+                      Tableau
+                    </a>
+                  </li>
+                  <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                    <a
+                      className={
+                        "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                        (openTab === 2
+                          ? "text-white bg-" + color + "-600"
+                          : "text-" + color + "-600 bg-white")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(2);
+                      }}
+                      data-toggle="tab"
+                      href="#link2"
+                      role="tablist"
+                    >
+                      Créer
+                    </a>
+                  </li>
+                  <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                    <a
+                      className={
+                        "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                        (openTab === 3
+                          ? "text-white bg-" + color + "-600"
+                          : "text-" + color + "-600 bg-white")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(3);
+                      }}
+                      data-toggle="tab"
+                      href="#link3"
+                      role="tablist"
+                    >
+                      Modifier
+                    </a>
+                  </li>
+                  <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                    <a
+                      className={
+                        "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                        (openTab === 4
+                          ? "text-white bg-" + color + "-600"
+                          : "text-" + color + "-600 bg-white")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(4);
+                      }}
+                      data-toggle="tab"
+                      href="#link4"
+                      role="tablist"
+                    >
+                      Supprimer
+                    </a>
+                  </li>
+                </ul>
+                <div className="relative flex flex-col min-w-0 break-words bg-grey w-full mb-6 shadow-lg rounded">
+                  <div className="px-4 py-5 flex-auto">
+                    <div className="tab-content tab-space">
+                      <div
+                        className={openTab === 1 ? "block" : "hidden"}
+                        id="link1"
+                      >
+                        <TableauBlog />
+                      </div>
+                      <div
+                        className={openTab === 2 ? "block" : "hidden"}
+                        id="link2"
+                      >
+                        <CreateBlog />
+                      </div>
+                      <div
+                        className={openTab === 3 ? "block" : "hidden"}
+                        id="link3"
+                      >
+                        <UpdateBlog />
+                      </div>
+                      <div
+                        className={openTab === 4 ? "block" : "hidden"}
+                        id="link4"
+                      >
+                        <DeleteBlog />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              className="tab-pane fade"
-              id="create"
-              role="tabpanel"
-              aria-labelledby="create-tab"
-            >
-              <CreateBlog />
-            </div>
-            <div
-              className="tab-pane fade"
-              id="profile"
-              role="tabpanel"
-              aria-labelledby="profile-tab"
-            >
-              <UpdateBlog />
-            </div>
-            <div
-              className="tab-pane fade"
-              id="contact"
-              role="tabpanel"
-              aria-labelledby="contact-tab"
-            >
-              <DeleteBlog />
-            </div>
-          </div>
+          </>
         </div>
       </div>
     </div>

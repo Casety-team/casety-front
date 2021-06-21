@@ -4,54 +4,34 @@ import {
   //delete_new_location,
 } from "../../../../services/blog.service";
 
+import { AgGridColumn, AgGridReact } from "ag-grid-react";
+import "ag-grid-enterprise";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
 const TableauBlog = () => {
   const [getAll, setGetAll] = useState([]);
 
   useEffect(() => {
-    getAllArticle().then((item) => setGetAll(item.data));
+    getAllArticle().then((item) => {
+      console.log(item.data);
+      setGetAll(item.data);
+    });
   }, []);
 
-  // const handleDeleteLocation = (id) => {
-  //   delete_new_location(id).then((item) => console.log(item));
-  // };
-
   return (
-    <table className="table mt-5">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nom de l'article</th>
-          <th scope="col">Description</th>
-          <th scope="col">Article</th>
-          {/* <th scope="col">Supprimer un lieu</th> */}
-        </tr>
-      </thead>
-      <tbody>
-        {console.log(getAll)}
-        {getAll.map((item) => (
-          <tr>
-            <th scope="row">{item.id}</th>
-            <td>{item.title}</td>
-            <td>{item.description.substring(0, 50)}...</td>
-            <td>
-              <span
-                dangerouslySetInnerHTML={{ __html: item.text.substring(0, 50) }}
-              />
-              ...
-            </td>
-            {/* <td>
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={() => handleDeleteLocation(item.id)}
-              >
-                Supprimer
-              </button>
-            </td> */}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div
+      className="ag-theme-alpine"
+      flex={1}
+      style={{ height: 600, width: "auto" }}
+    >
+      <AgGridReact rowData={getAll}>
+        <AgGridColumn field="id" flex={1}></AgGridColumn>
+        <AgGridColumn field="title" flex={2}></AgGridColumn>
+        <AgGridColumn field="description" flex={2}></AgGridColumn>
+        <AgGridColumn field="categorieId" flex={2}></AgGridColumn>
+      </AgGridReact>
+    </div>
   );
 };
 export default TableauBlog;

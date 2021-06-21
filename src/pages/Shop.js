@@ -181,7 +181,7 @@ const Shop = () => {
                       htmlFor="date_retrait"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      date_retrait
+                      Date de retrait
                     </label>
                     <input
                       name="date_retrait"
