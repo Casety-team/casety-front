@@ -1,4 +1,4 @@
-import logo from "../../assets/pictures/dark_logo.png";
+import logo from "../../assets/pictures/blue_logo.png";
 
 const Header = () => {
   return (
@@ -12,20 +12,19 @@ const Header = () => {
             La sécurité, ça ne se braque pas
           </h1>
           <p className="mb-8 leading-relaxed">
-            Imaginez être dans le centre de Paris sans avoir à transporter vos
-            bagages, paquets ou effet personnels  pour que votre séjour dans
-            paris soit le plus agréable possible, CASETY offre une solution
-            moderne et sécurisée pour l’entreposage de vos effets personnels.
+            Voyagez à Paris en toute simplicité grâce à la nouvelle solution
+            100% sécurisée : CASETY !
           </p>
           <p className="mb-8 leading-relaxed">
-            Sous vidéosurveillance 24h sur 24, les espaces CASETY se trouvent en
-            centre-ville et à proximité des gares et permettent d'accéder
-            facilement aux principaux aéroports (gare RER, Roissy Bus,
-            métro...).
+            Grâce à CASETY, voyagez librement et sans encombre ! Déposez vos
+            effets personnels et bagages en toute sécurité grâce à une solution
+            moderne créer pour l'entreposage de vos affaires. Valises, sacs, et
+            vélos seront déposable dans nos différents casiers.
           </p>
           <p className="mb-8 leading-relaxed">
-            Les espace CASETY sont sous vidéosurveillance et reliés à un centre
-            de veille et de contrôle.
+            Sous vidéo-surveillance 7/24 et reliés à un centre de veille et de
+            controle les Casetys se trouvent à chaque coins de rue Parisiens, à
+            proximité des gares ainsi que des grands lieux.
           </p>
           <div className="flex justify-center">
             <a
@@ -42,10 +41,12 @@ const Header = () => {
             </a>
           </div>
         </div>
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+        <div className="mt-10">
           <img
             className="object-cover object-center rounded"
             alt="hero"
+            height="300"
+            width="300"
             src={logo}
           />
         </div>
