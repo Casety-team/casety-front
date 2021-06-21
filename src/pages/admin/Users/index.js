@@ -27,9 +27,6 @@ const Users = () => {
               <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
                 Email
               </th>
-              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Téléphone
-              </th>
             </tr>
           </thead>
           <tbody class="text-gray-700">
@@ -44,11 +41,6 @@ const Users = () => {
                     href={`mailto:${e.email.toLowerCase()}`}
                   >
                     {e.email.toLowerCase()}
-                  </a>
-                </td>
-                <td class="text-left py-3 px-4">
-                  <a class="hover:text-blue-500" href={`tel:${e.phone}`}>
-                    {e.phone}
                   </a>
                 </td>
               </tr>

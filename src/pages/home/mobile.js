@@ -28,11 +28,11 @@ const Mobile = () => {
             </div>
             <div className="flex-grow">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                Rapidité
+                Simplicité
               </h2>
               <p className="leading-relaxed text-base">
-                Louer un casier très rapidement sur l'application mobile de
-                casety.
+                Louer le casier de votre choix en moins d'une minute grâce à
+                l'application mobile Casety
               </p>
             </div>
           </div>
@@ -57,8 +57,33 @@ const Mobile = () => {
                 Efficacité
               </h2>
               <p className="leading-relaxed text-base">
-                Louer un casier sécurisé en moins de 5 minutes, dans les lieux
-                qui vous convient
+                Réservez votre Casety en toute sécurisé, rapidement et proche de
+                vous
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col mb-10 lg:items-start items-center">
+            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                className="w-6 h-6"
+                viewBox="0 0 24 24"
+              >
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div className="flex-grow">
+              <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
+                Sécurité
+              </h2>
+              <p className="leading-relaxed text-base">
+                Grâce à la conception des casiers ainsi que son système de
+                payement sécurisé, réservez votre Casety en toute sérénité
               </p>
             </div>
           </div>
@@ -82,8 +107,8 @@ const Mobile = () => {
                 Performance
               </h2>
               <p className="leading-relaxed text-base">
-                Connectez-vous avec votre compte et consultez vos factures en
-                moins d'une 1 minute
+                Connectez-vous avec grâce à votre compte et consultez vos
+                factures en moins d'une minute
               </p>
             </div>
           </div>
@@ -104,36 +129,11 @@ const Mobile = () => {
             </div>
             <div className="flex-grow">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                Performance
+                Proximité
               </h2>
               <p className="leading-relaxed text-base">
-                Connectez-vous avec votre compte et consultez vos factures en
-                moins d'une 1 minute
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col mb-10 lg:items-start items-center">
-            <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-6 h-6"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </div>
-            <div className="flex-grow">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                Performance
-              </h2>
-              <p className="leading-relaxed text-base">
-                Connectez-vous avec votre compte et consultez vos factures en
-                moins d'une 1 minute
+                Contactez facilement l'équipe Casety pour tous renseignements
+                (mail-open)
               </p>
             </div>
           </div>
