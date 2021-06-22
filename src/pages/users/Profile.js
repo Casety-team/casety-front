@@ -88,14 +88,12 @@ const Profile = () => {
             Bonjour <span className="text-blue-500">{firstname}</span> !
           </h2>
           <h2 className="text-xs text-center mt-3 text-blue-500 tracking-widest font-medium title-font mb-1">
-            Vous êtes un{" "}
-            {currentUser.roles.map((role, index) => {
-              return role.substr(5).toLowerCase() === "admin" ? (
-                <span className="text-red-500">administrateur</span>
-              ) : (
-                <span className="text-red-500">utilisateur</span>
-              );
-            })}
+            Vous êtes un
+            {currentUser.roles.length === 2 ? (
+              <span className="text-red-800"> administrateur</span>
+            ) : (
+              <span className="text-blue-800"> utilisateur</span>
+            )}
           </h2>
 
           <div className="mt-4 grid grid-cols-6 gap-6">
