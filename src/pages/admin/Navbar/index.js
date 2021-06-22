@@ -1,6 +1,6 @@
 const Navbar = (value) => {
   return (
-    <aside className="relative bg-blue-500 h-screen w-64 hidden sm:block shadow-xl">
+    <aside style={{marginTop: 80}} className="fixed top-0 bg-blue-500 h-screen w-64 hidden sm:block shadow-xl">
       <nav className="text-white text-base font-semibold pt-3">
         <a
           href="/admin"

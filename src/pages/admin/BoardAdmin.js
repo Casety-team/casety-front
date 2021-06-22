@@ -77,21 +77,15 @@ const BoardAdmin = () => {
 
   return (
     <div style={{ marginTop: 80 }} className="bg-white">
-      <div class="font-family-karla flex">
-        <Navbar value="dashboard" />
-        <div class="w-full overflow-x-hidden border-t flex flex-col">
-          <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Dashboard</h1>
-            <div className="header"></div>
-            <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6 sm:col-span-3">
-                <Users />
-              </div>
-              <div className="col-span-6 sm:col-span-3">
-                <Line data={data} options={options} />
-              </div>
-            </div>
-          </main>
+      <div class="text-gray-600 body-font">
+        <div class="flex">
+          <div class="md:w-1/5 mb-10 md:mb-0 border-b border-gray-200">
+            <Navbar value="dashboard" />
+          </div>
+          <div class="md:w-full pr-12 container justily-center items-center">
+            <Line data={data} options={options} />
+            <Users />
+          </div>
         </div>
       </div>
     </div>

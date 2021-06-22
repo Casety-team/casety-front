@@ -14,7 +14,6 @@ const TableauBlog = () => {
 
   useEffect(() => {
     getAllArticle().then((item) => {
-      console.log(item.data);
       setGetAll(item.data);
     });
   }, []);
