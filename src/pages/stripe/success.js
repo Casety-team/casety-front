@@ -1,17 +1,17 @@
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
-import { verifyBuy } from "../../services/basket.service";
+import { verifyBuy, getTokenList } from "../../services/basket.service";
 
 const Success = () => {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
-  if (window.location.pathname.substr(23)) {
-    verifyBuy(window.location.pathname.substr(23));
-  } else {
-    window.location.replace("/");
-  }
+  useEffect(() => {
+    getTokenList(window.location.pathname.substr(23)).then((e) =>
+      verifyBuy(window.location.pathname.substr(23), e.data[0].paymentIntent)
+    );
+  }, []);
 
   return (
     <Transition.Root show={open} as={Fragment}>

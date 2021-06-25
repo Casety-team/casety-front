@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../../services/auth.service";
-import { getBasket, getAllBaskets } from "../../services/basket.service";
+import { getAllBaskets } from "../../services/basket.service";
 
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+import TotalValueRenderer from "./button.jsx";
 
 const Basket = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -14,30 +16,39 @@ const Basket = () => {
   const [getAll, setGetAll] = useState([]);
 
   useEffect(() => {
-    getAllBaskets(userId).then((e) =>
-      e.data.map((a) =>
-        getBasket(a.id).then((r) => {
-          const array1 = r.data[0];
-          const array2 = r.data[1];
-          const array3 = { ...array1, ...array2 };
-          setGetAll([array3]);
-        })
-      )
-    );
+    getAllBaskets(userId).then((e) => setGetAll(e.data));
   }, []);
+
+  console.log(getAll);
 
   return (
     <div
-      className="mt-5 ag-theme-alpine"
-      flex={1}
-      style={{ height: 600, width: "auto" }}
+      className="ag-theme-alpine container items-center"
+      style={{ marginTop: 120, height: 800, width: 1000, marginLeft: 500 }}
     >
-      {console.log(getAll)}
-      <AgGridReact rowData={getAll}>
-        <AgGridColumn field="userId" flex={1}></AgGridColumn>
+      <AgGridReact
+        rowData={getAll}
+        frameworkComponents={{
+          totalValueRenderer: TotalValueRenderer,
+        }}
+        defaultColDef={{
+          editable: true,
+          sortable: true,
+          flex: 1,
+          minWidth: 100,
+          rowHeight: 100,
+          filter: true,
+          resizable: true,
+        }}
+      >
+        <AgGridColumn field="id" flex={1}></AgGridColumn>
         <AgGridColumn field="code_unlock" flex={1}></AgGridColumn>
         <AgGridColumn field="reserverId" flex={2}></AgGridColumn>
-        <AgGridColumn field="receipt_url" flex={2}></AgGridColumn>
+        <AgGridColumn
+          field="receipt_url"
+          minWidth={15}
+          cellRenderer="totalValueRenderer"
+        />
       </AgGridReact>
     </div>
   );
