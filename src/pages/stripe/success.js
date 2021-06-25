@@ -1,7 +1,6 @@
-import { useEffect, useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
-
 const Success = () => {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
