@@ -74,6 +74,13 @@ const Shop = () => {
           const result = count + "00";
 
           ShopService.getSingleLocker(myLockerType).then((e) => {
+            console.log(
+              "sINGLElOCKERS =>",
+              e.data.name,
+              result,
+              userId,
+              response.data.id
+            );
             ShopService.buyProduct(
               e.data.name,
               result,
