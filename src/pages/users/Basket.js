@@ -12,40 +12,42 @@ import TotalValueRenderer from "./button.jsx";
 const Basket = () => {
   const currentUser = AuthService.getCurrentUser();
   const userId = currentUser.id;
-
   const [getAll, setGetAll] = useState([]);
 
   useEffect(() => {
     getAllBaskets(userId).then((e) => setGetAll(e.data));
   }, []);
 
-  console.log(getAll);
-
   return (
     <div
       className="ag-theme-alpine container items-center"
-      style={{ marginTop: 120, height: 800, width: 1000, marginLeft: 500 }}
+      style={{ marginTop: 120, height: 600, width: 1000, marginLeft: 250 }}
     >
       <AgGridReact
-        rowData={getAll}
+        rowData={getAll[0]}
         frameworkComponents={{
           totalValueRenderer: TotalValueRenderer,
         }}
         defaultColDef={{
-          editable: true,
           sortable: true,
           flex: 1,
           minWidth: 100,
           rowHeight: 100,
           filter: true,
-          resizable: true,
         }}
       >
-        <AgGridColumn field="id" flex={1}></AgGridColumn>
-        <AgGridColumn field="code_unlock" flex={1}></AgGridColumn>
-        <AgGridColumn field="reserverId" flex={2}></AgGridColumn>
+        <AgGridColumn field="id" headerName="Identifiant"></AgGridColumn>
+        <AgGridColumn
+          field="code_unlock"
+          headerName="code déverrouillage"
+        ></AgGridColumn>
+        <AgGridColumn
+          field="reserverId"
+          headerName="Numéro de réservation"
+        ></AgGridColumn>
         <AgGridColumn
           field="receipt_url"
+          headerName="Facture"
           minWidth={15}
           cellRenderer="totalValueRenderer"
         />
