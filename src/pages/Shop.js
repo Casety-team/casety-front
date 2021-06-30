@@ -52,13 +52,15 @@ const Shop = () => {
   }, []);
 
   const createReserver = (e) => {
+    console.log("Res =>", dateDepot, dateRetrait, myLockerType, userId);
     e.preventDefault();
     ShopService.newReserver(dateDepot, dateRetrait, myLockerType, userId).then(
       (response) => {
+        console.log("response =>", response);
+
         if (response.status === 200) {
           const startDate = moment(dateDepot);
           const timeEnd = moment(dateRetrait);
-
           const diff = timeEnd.diff(startDate);
           const diffDuration = moment.duration(diff);
           const retrait = diffDuration.hours();
@@ -70,6 +72,7 @@ const Shop = () => {
             }
           }
           const result = count + "00";
+
           ShopService.getSingleLocker(myLockerType).then((e) => {
             ShopService.buyProduct(
               e.data.name,
