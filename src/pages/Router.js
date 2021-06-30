@@ -9,9 +9,8 @@ import Terms from "./Terms";
 
 import Article from "./blog/articles/index.js";
 
-import Success from "./stripe/Success";
-import Error from "./stripe/Error";
-import NoMatch from "./404/";
+import Success from "./stripe/success";
+import Error from "./stripe/error";
 
 import Login from "./users/Signin";
 import Register from "./users/Signup";
