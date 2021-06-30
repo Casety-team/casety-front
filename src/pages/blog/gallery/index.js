@@ -31,7 +31,7 @@ const Gallery = () => {
                   {item.title}
                 </h1>
                 <p className="text-gray-500 text-sm sm:text-base line-clamp-3">
-                  {item.description.substr(1, 150)}...
+                  {item.description.substr(0, 150)}...
                 </p>
                 <div className="flex gap-4 mt-auto">
                   <a
