@@ -1,11 +1,9 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 
 import {
   getAllArticle,
-  getSingleCategorie,
   getSingleArticle,
   delete_new_article,
 } from "../../../../services/blog.service";
@@ -22,13 +20,8 @@ const DeleteBlog = () => {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
-  const editorRef = useRef(null);
-  const [picture_url, setPicture_url] = useState("");
-  const [getCategorie, setGetCategorie] = useState([]);
-
   useEffect(() => {
     getAllArticle(categorieId).then((item) => setGetAll(item.data));
-    getSingleCategorie(categorieId).then((item) => setGetCategorie(item.data));
   }, [categorieId]);
 
   useEffect(() => {
@@ -36,7 +29,6 @@ const DeleteBlog = () => {
       setTitle(item.data.title);
       setDescription(item.data.description);
       setText(item.data.text);
-      setPicture_url(item.data.picture_url);
       setCategorieId(item.data.categorieId);
     });
   }, [getIdArticle]);
